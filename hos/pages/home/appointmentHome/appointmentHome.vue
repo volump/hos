@@ -6,6 +6,19 @@
  -->
 <template>
 	<view>
+		<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
+						:duration="duration" v-if="insureVisited == 0">
+						<swiper-item>
+							<image src="../../../static/appointment/hospital/hospital1.jpg" class="swiper-item"></image>
+						</swiper-item>
+						<swiper-item>
+							<image src="../../../static/appointment/hospital/hospital5.jpg" class="swiper-item"></image>
+						</swiper-item>
+						<swiper-item>
+							<image src="../../../static/appointment/hospital/hospital3.jpg" class="swiper-item"></image>
+						</swiper-item>
+		</swiper>
+		
 		<from-hosipital v-if="insureVisited == 0"></from-hosipital>
 		<from-doctor v-if="insureVisited == 1"></from-doctor>
 		<from-date v-if="insureVisited == 2"></from-date>
@@ -61,6 +74,12 @@
 		},
 		data() {
 			return {
+				background: ['color1', 'color2', 'color3'],
+				indicatorDots: true,
+				autoplay: true,
+				interval: 2000,
+				duration: 500,
+				
 				isShowModal: false,
 				imgUrl: '/static/appointment/',
 				modalVisited: 0,// 弹出框用户点击的
@@ -122,6 +141,16 @@
 	page {
 		background: #F2F2F2;
 		position: relative;
+	}
+	.swiper {
+			height: 350rpx;
+	}
+	.swiper-item {
+				display: block;
+				height: 350rpx;
+				line-height: 300rpx;
+				text-align: center;
+				width: 100%;
 	}
 	// 用来唤起底部的选择的按钮
 	.icon-up-position{

@@ -1,8 +1,8 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<image class="logo" src="/static/logo.png" @click="gotoList()"></image>
 		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<text class="title" >{{title}}</text>
 		</view>
 	</view>
 </template>
@@ -18,7 +18,11 @@
 
 		},
 		methods: {
-
+			gotoList: function(){
+				uni.navigateTo({
+					url:"../../pagesA/list/list"
+				})
+			}
 		}
 	}
 </script>

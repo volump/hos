@@ -39,6 +39,7 @@
  					})
  					console.log(getToken())
  				} else {
+		
  						console.log("失败1")
  						reject(res)
  				}

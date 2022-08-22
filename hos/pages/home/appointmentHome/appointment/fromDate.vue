@@ -59,12 +59,12 @@
 			height: 100%;
 			margin: 0 auto;
 			@include icon-size(80rpx,80rpx);
-			margin-right: 5%;
+			margin-right: 20%;
 		}
 		.text{
-			width: 60%;
+			width: 30%;
 			vertical-align: middle;
-			@include font-style(18px,bold,$major-color);
+			@include font-style(15px,bold,$major-color);
 		}
 	}
 	.date-box{

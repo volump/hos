@@ -11,6 +11,7 @@ import request from '@/common/utils/request.js'
  
  // 1 添加挂号记录
  export function addAppoint(data) {
+	 console.log("挂号了-----------------")
 	 return request({
 		 url: '/visit/appointment',
 		 method: 'post',

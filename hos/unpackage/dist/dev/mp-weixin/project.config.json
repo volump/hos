@@ -5,35 +5,24 @@
   },
   "setting": {
     "urlCheck": false,
-    "es6": true
+    "minified": true
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "wx9dd8ecbe010f1d14",
-  "projectname": "hos",
+  "appid": "wxd4b5c8642ff37b06",
+  "projectname": "appointment-wxapp",
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": 0,
-      "list": [
-        {
-          "name": "",
-          "path": "",
-          "query": "",
-          "id": 0
-        }
-      ]
+      "list": []
     }
   }
 }

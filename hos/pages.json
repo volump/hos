@@ -1,5 +1,6 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/photoLogin/photoLogin",
 			"style": {}
@@ -15,17 +16,119 @@
 			}
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
+			"path": "pages/home/appointmentHome/selectDepartment/selectDepartment",
+			"style": {}
+		}
+
+    ],
+	"subPackages": [{
+			"root": "pagesA",
+			"pages": [{
+				"path": "pages/awaitingQueue/awaitingQueue",
+				"style": {}
+			}, {
+				"path": "pages/creditDetail/creditDetail",
+				"style": {}
+			}, {
+				"path": "pages/appointRecord/appointRecord",
+				"style": {
+					"navigationBarTextStyle": "white",
+					"navigationBarTitleText": "挂号记录",
+					"navigationBarBackgroundColor": "#7EC0EE"
+				}
+			}, {
+				"path": "pages/treatRecord/treatRecord",
+				"style": {
+					"navigationBarTextStyle": "white",
+					"navigationBarTitleText": "就诊记录",
+					"navigationBarBackgroundColor": "#7EC0EE"
+				}
+			}, {
+				"path": "pages/treatRecord/treatRecordDetail/treatRecordDetail",
+				"style": {
+					"navigationBarTextStyle": "white",
+					"navigationBarTitleText": "就诊记录详情",
+					"navigationBarBackgroundColor": "#7EC0EE"
+				}
+			}, {
+				"path": "pages/aboutUs/aboutUs",
+				"style": {
+					"navigationBarTextStyle": "white",
+					"navigationBarTitleText": "关于我们",
+					"navigationBarBackgroundColor": "#7EC0EE"
+				}
+			},{
+			    "path" : "pages/creditDetail/creditAppointDetail/creditAppointDetail",
+			    "style" : {}
+			}]
+		},
+		{
+			"root": "pagesB",
+			"pages": [{
+					"path": "pages/center/login/login",
+					"style": {}
+				},
+				{
+					"path": "pages/center/login/quickRegister/quickRegister",
+					"style": {}
+				},
+				{
+					"path": "pages/center/login/fotgotPassword/fotgotPassword",
+					"style": {}
+				},
+				{
+					"path": "pages/center/addCard/addCard",
+					"style": {
+						"navigationBarTextStyle": "white",
+						"navigationBarTitleText": "添加就诊卡",
+						"navigationBarBackgroundColor": "#7EC0EE"
+					}
+				},
+				{
+					"path": "pages/center/addCard/editCard/editCard",
+					"style": {
+						"navigationBarTextStyle": "white",
+						"navigationBarTitleText": "修改就诊卡",
+						"navigationBarBackgroundColor": "#7EC0EE"
+					}
+				}, {
+					"path": "pages/appointPages/timeDoctor/timeDoctor",
+					"style": {}
+				}, {
+					"path": "pages/appointPages/doctorAppointDetail/doctorAppointDetail",
+					"style": {
+						"navigationBarTextStyle": "white",
+						"navigationBarTitleText": "医生号源情况",
+						"navigationBarBackgroundColor": "#7EC0EE"
+					}
+				}, {
+					"path": "pages/appointPages/doctorAppointDetail/insureAppoint/insureAppoint",
+					"style": {
+						"navigationBarTextStyle": "white",
+						"navigationBarTitleText": "确认号源信息",
+						"navigationBarBackgroundColor": "#7EC0EE"
+					}
+				}, {
+					"path": "pages/center/cardList/cardList",
+					"style": {
+						"navigationBarTextStyle": "white",
+						"navigationBarTitleText": "就诊卡队列",
+						"navigationBarBackgroundColor": "#7EC0EE"
+					}
+				}, {
+					"path": "pages/appointPages/doctorList/doctorList",
+					"style": {}
+				}, {
+					"path": "pages/center/baseInfo/baseInfo",
+					"style": {}
+				}
+			]
 		}
 	],
-	//分包预载配置。
 	"preloadRule": {
 		"pages/photoLogin/photoLogin": {
-			"network": "all", //指定网络下预下载
-			"packages": ["__APP__"]  //_APP__ 表示主包。
+			"network": "all",
+			"packages": ["__APP__"]
 		}
 	},
 	"tabBar": {
@@ -51,15 +154,5 @@
 		"navigationBarTitleText": "医院挂号系统",
 		"navigationBarBackgroundColor": "#7EC0EE",
 		"backgroundColor": "#F2F2F2"
-	},
-	"condition" : { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [
-			{
-				"name": "", //模式名称
-				"path": "", //启动页面，必选
-				"query": "" //启动参数，在页面的onLoad函数里面得到
-			}
-		]
 	}
 }

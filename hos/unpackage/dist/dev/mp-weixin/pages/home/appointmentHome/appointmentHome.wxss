@@ -111,6 +111,16 @@ page {
   background: #F2F2F2;
   position: relative;
 }
+.swiper {
+  height: 350rpx;
+}
+.swiper-item {
+  display: block;
+  height: 350rpx;
+  line-height: 300rpx;
+  text-align: center;
+  width: 100%;
+}
 .icon-up-position {
   width: 70rpx;
   height: 70rpx;

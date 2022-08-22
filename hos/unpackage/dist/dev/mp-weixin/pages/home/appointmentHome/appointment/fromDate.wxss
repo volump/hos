@@ -129,12 +129,12 @@
   margin: 0 auto;
   width: 80rpx;
   height: 80rpx;
-  margin-right: 5%;
+  margin-right: 20%;
 }
 .top-date-text .text {
-  width: 60%;
+  width: 30%;
   vertical-align: middle;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   color: #7EC0EE;
 }

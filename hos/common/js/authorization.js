@@ -12,8 +12,9 @@ export function weChat() {
 				// 已经授权，可以直接调用 getUserInfo 获取头像昵称
 				wx.getUserInfo({
 					success: function(res) {
-						// console.log(res)
+						console.log(res)
 						uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
+					
 						uni.setStorageSync("isAuthrization", true)
 						// uni.switchTab({
 						// 	url: '/pages/center/center'

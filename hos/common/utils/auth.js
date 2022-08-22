@@ -1,8 +1,10 @@
 // 作为存储token的接口
 const jwt_token = 'jwt'
 
+
 // 存储token
 export function setToken(token) {
+	console.log("token:" + token + "----end")
 	uni.setStorageSync(jwt_token, token)
 }
 

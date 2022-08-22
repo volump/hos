@@ -1,6 +1,6 @@
 {
-    "name" : "hos",
-    "appid" : "",
+    "name" : "appointment-wxapp",
+    "appid" : "__UNI__AAB23D5",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -9,7 +9,6 @@
     "app-plus" : {
         "usingComponents" : true,
         "nvueCompiler" : "uni-app",
-        "compilerVersion" : 3,
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : true,
@@ -57,14 +56,15 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx9dd8ecbe010f1d14",
+        "appid" : "wxd4b5c8642ff37b06",
         "setting" : {
             "urlCheck" : false,
-            "es6" : true
+            "minified" : true
         },
         "usingComponents" : true
     },
     "mp-alipay" : {
+        "appid" : "2021001104639268",
         "usingComponents" : true
     },
     "mp-baidu" : {
@@ -73,7 +73,13 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics" : {
-        "enable" : false
+    "h5" : {
+        "router" : {
+            "mode" : "history",
+            "base" : "/Yang-appoint/"
+        },
+        "title" : "挂号系统"
     }
 }
+// "domain" : "https://www.funkingka.cn/Yang-appoint"
+

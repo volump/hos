@@ -5,7 +5,7 @@
 			<view class="left-right-half-box">
 				<view class="left-right-inbox" v-for="(item, index) in hospitalList" 
 				:key="item.id" v-if="index % 2 === 0" @click="toDepartmentPage(item.id, item.name)">
-					<image style="width: 100%;" mode="widthFix" :src="item.picture"></image>
+					<image style="width: 100%;" mode="widthFix" src="../../../../static/appointment/hospital/hospital6.jpg"></image>
 					<view class="row-width">
 						<image class="icon" src="/static/appointment/hosp-icon.png"></image>
 						<text class="hospital-text">{{item.name}}</text>
@@ -24,7 +24,7 @@
 			<view class="left-right-half-box">
 				<view class="left-right-inbox" v-for="(item, index) in hospitalList" 
 				:key="item.id" v-if="index % 2 !== 0" @click="toDepartmentPage(item.id, item.name)">
-					<image style="width: 100%;" mode="widthFix" :src="item.picture"></image>
+					<image style="width: 100%;" mode="widthFix" src="../../../../static/appointment/hospital/hospital4.jpg"></image>
 					<view class="row-width">
 						<image class="icon" src="/static/appointment/hosp-icon.png"></image>
 						<text class="hospital-text">{{item.name}}</text>
