@@ -268,13 +268,7 @@ var _default = { data: function data() {return { // 表单的数据
     // 将数据存进数据库后跳转到个人中心页面
     toAddCard: function toAddCard() {
       (0, _quickRegister.userRegister)({
-
         avatarUrl: uni.getStorageSync('avatarUrl'),
-
-
-
-
-
         name: this.form.name,
         password: (0, _jsMd.default)(this.form.password),
         phone: this.form.phone }).

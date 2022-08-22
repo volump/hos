@@ -202,13 +202,7 @@ var _default = { data: function data() {return { name: '', password: '', isVisib
     // 授权获取用户信息
     getUserInfo: function getUserInfo() {
       var _this = this;
-      // 当用微信小程序时调用
-
       this.weChat();
-
-      // 当用支付宝小程序时调用
-
-
 
     },
     // 跳转到center页面
@@ -246,9 +240,7 @@ var _default = { data: function data() {return { name: '', password: '', isVisib
       }
     },
 
-    /**
-        * 此处是三个平台的授权的方法
-        * **/
+
     // 微信小程序的授权
     weChat: function weChat() {
       uni.showLoading({
@@ -274,23 +266,6 @@ var _default = { data: function data() {return { name: '', password: '', isVisib
               } });
 
           }
-        } });
-
-    },
-    // 支付宝的授权
-    alipay: function alipay() {
-      uni.showLoading({
-        title: '加载中' });
-
-      var _this = this;
-      my.getAuthCode({
-        scopes: 'auth_user',
-        success: function success(res) {
-          console.log(res);
-          uni.hideLoading();
-          // uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
-          uni.setStorageSync("isAuthrization", true);
-          _this.isAuthrization = true;
         } });
 
     } } };exports.default = _default;

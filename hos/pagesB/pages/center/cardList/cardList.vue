@@ -204,7 +204,7 @@
 		},
 		onShow() {
 			this.getUserCardInfo()
-		}
+		},
 	}
 </script>
 

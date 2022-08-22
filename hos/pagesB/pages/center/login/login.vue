@@ -70,14 +70,8 @@
 			// 授权获取用户信息
 			getUserInfo: function() {
 				var _this = this
-				// 当用微信小程序时调用
-				// #ifdef MP-WEIXIN
 				this.weChat()
-				// #endif
-				// 当用支付宝小程序时调用
-				// #ifdef MP-ALIPAY
-				this.alipay()
-				// #endif
+			
 			},
 			// 跳转到center页面
 			toPageCenter: function() {
@@ -114,9 +108,7 @@
 				}
 			},
 
-			/**
-			 * 此处是三个平台的授权的方法
-			 * **/
+			
 			// 微信小程序的授权
 			weChat: function() {
 				uni.showLoading({
@@ -145,25 +137,7 @@
 					}
 				})
 			},
-			// 支付宝的授权
-			alipay: function() {
-				uni.showLoading({
-					title: '加载中'
-				})
-				let _this = this
-				my.getAuthCode({
-					scopes: 'auth_user',
-					success: (res) => {
-						console.log(res)
-						uni.hideLoading()
-						// uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
-						uni.setStorageSync("isAuthrization", true)
-						_this.isAuthrization = true
-					}
-				})
-			}
 		}
-
 	}
 </script>
 

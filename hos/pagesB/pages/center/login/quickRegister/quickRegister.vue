@@ -136,13 +136,7 @@
 			// 将数据存进数据库后跳转到个人中心页面
 			toAddCard:function(){
 				userRegister({
-					// #ifdef MP
 					avatarUrl: uni.getStorageSync('avatarUrl'),
-					// #endif
-					// #ifdef H5
-					// H5注册时使用默认头像
-					avatarUrl: 'http://image.yujian95.cn/FmxdyLFebwrEhId3tyb7AXo5Xryc',
-					// #endif
 					name: this.form.name,
 					password: md5(this.form.password),
 					phone: this.form.phone
