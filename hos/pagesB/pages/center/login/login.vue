@@ -92,16 +92,6 @@
 								url:'../../../../pages/center/center'
 							})
 						}
-						// if(uni.getStorageSync("phone")){
-						// 	uni.setStorageSync("isAlreadyLogin", true)
-							// uni.showToast({
-							// 	icon:"none",
-							// 	title:'登录成功'
-							// })
-						// 	uni.switchTab({
-						// 		url:'../../../../pages/center/center'
-						// 	})
-						// }
 						else{
 							uni.showToast({
 								icon:"none",

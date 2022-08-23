@@ -362,7 +362,8 @@ var _default = { data: function data() {return { isAlreadyLogin: uni.getStorageS
     } },
 
   onShow: function onShow() {
-    console.log("avatarUrl ========" + uni.getStorageSync("avatarUrl"));
+    console.log("avatarUrl ====center====" + uni.getStorageSync("avatarUrl"));
+    uni.hideLoading();
     // console.log(md5("admin"))
     if (uni.getStorageSync('isAlreadyLogin')) {
       this.getUserInfo();

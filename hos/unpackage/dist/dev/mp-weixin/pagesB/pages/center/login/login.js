@@ -223,23 +223,13 @@ var _default = { data: function data() {return { name: '', password: '', isVisib
             uni.switchTab({
               url: '../../../../pages/center/center' });
 
-          }
-          // if(uni.getStorageSync("phone")){
-          // 	uni.setStorageSync("isAlreadyLogin", true)
-          // uni.showToast({
-          // 	icon:"none",
-          // 	title:'登录成功'
-          // })
-          // 	uni.switchTab({
-          // 		url:'../../../../pages/center/center'
-          // 	})
-          // }
-          else {
-              uni.showToast({
-                icon: "none",
-                title: 'mei' });
+          } else
+          {
+            uni.showToast({
+              icon: "none",
+              title: 'mei' });
 
-            }
+          }
         },
         fail: function fail(err) {
           console.log(err);
