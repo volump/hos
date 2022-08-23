@@ -32,24 +32,26 @@
 					success: function(res) {
 						try {
 							var code = res.code
+							
 							console.log("res======" + res.code)
 							uni.getUserInfo({
 								provider: 'weixin',
 								success: function(infoRes) {
 									console.log("infoRes===" + infoRes.userInfo.nickName)
-									var  nickName = infoRes.userInfo.nickName
-									var  avatarUrl = infoRes.userInfo.avatarUrl
+									// var  nickName = infoRes.userInfo.nickName
+									// var  avatarUrl = infoRes.userInfo.avatarUrl
 									let url = 'http://localhost:8080/hospital/user/wx?code='+code;
 									uni.request({
 										url: url, // 请求路径
 										success: result => {
 											console.log("result =======" + result.data.data)
-											uni.setStorageSync("openid", result.data.data.openid)
-											uni.setStorageSync("userInfo", result.data.data)
-											uni.setStorageSync("phone", result.data.data.userName)
-											console.log("openid =====:"+result.data.data.openid)
+											console.log("result =======" + result.data.data.account.openid)
+											uni.setStorageSync("openid", result.data.data.account.openid)
+											uni.setStorageSync("phone", result.data.data.account.name)
+											uni.setStorageSync("userAccountId", result.data.data.account.id);
+											console.log("openid =====:"+ result.data.data.account.openid)
 											console.log("phone =======" + uni.getStorageSync("phone"))
-											console.log(uni.getStorageSync("userInfo"))
+											console.log("accountId =======" + uni.getStorageSync("userAccountId"))
 										},
 										fail(ex) {
 											console.log(ex.message)
@@ -64,9 +66,19 @@
 					}
 				});
 			}
-			this.Countdown()
-			console.log("dkjgdj")
-			
+			// if(uni.getStorageSync("userAccountId")){
+			 	this.Countdown()
+			// 	console.log("----------------------已经登录了")
+			// }
+			// else{
+			// 	uni.showToast({
+			// 		icon:"none",
+			// 		title:'请先注册账号'
+			// 	})
+			// 	uni.navigateTo({
+			// 		url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
+			// 	})
+			// }
 		}
 	}
 </script>

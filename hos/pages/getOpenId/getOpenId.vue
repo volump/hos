@@ -16,6 +16,7 @@
 				var that = this
 				var openid = uni.getStorageSync("openid")
 				console.log("-------------")
+				
 				if (openid) {
 					uni.login({
 						provider: 'weixin',
@@ -23,7 +24,6 @@
 							try {
 								var code = res.code
 								console.log("res======" + res.code)
-								
 								uni.getUserInfo({
 									provider: 'weixin',
 									success: function(infoRes) {
@@ -34,11 +34,15 @@
 										uni.request({
 											url: url, // 请求路径
 											success: result => {
-												console.log("result =======" + result.data.data)
-												uni.setStorageSync("openid", result.data.data)
-												uni.setStorageSync("nickName", nickName)
-												uni.setStorageSync("avatarUrl", avatarUrl)
-												console.info(result.data.data.openid)
+												console.log("result =======" + result.data.data.account.openid)
+												uni.setStorageSync("openid", result.data.data.account.openid)
+												uni.setStorageSync("openid", result.data.data.account.openid)
+												uni.setStorageSync("phone", result.data.data.account.name)
+												uni.setStorageSync("userAccountId", result.data.data.account.id);
+												console.log("openid =====:"+ result.data.data.account.openid)
+												console.log("phone =======" + uni.getStorageSync("phone"))
+												console.log("accountId =======" + uni.getStorageSync("userAccountId"))
+												
 											},
 											fail(ex) {
 												console.log(ex.message)

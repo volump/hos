@@ -64,6 +64,10 @@
 				<text class="textData">{{userCardInfo.phone}}</text>
 			</view>
 		</view>
+		<view class="list addCard" >
+			<image class="icon" src="/static/add-crads.png"></image>
+			<text class="text">绑定微信</text>
+		</view>
 		<!-- 当没有添加自己的就诊卡时 -->
 		<view class="list addCard" v-show="!isGetCard" @click="toAddCard()">
 			<image class="icon" src="/static/add-crads.png"></image>

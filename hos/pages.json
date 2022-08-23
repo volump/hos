@@ -1,6 +1,8 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	
+		
 		
 		{
 			"path": "pages/photoLogin/photoLogin",
@@ -11,10 +13,13 @@
 		    "style" : {}
 		},
 		{
+		    "path" : "pages/getPhone/getPhone",
+		    "style" : {}
+		},
+		{
 		    "path" : "pages/getOpenId/getOpenId",
 		    "style" : {}
 		},
-		
 		{
 			"path": "pages/home/appointmentHome/appointmentHome",
 			"style": {}
