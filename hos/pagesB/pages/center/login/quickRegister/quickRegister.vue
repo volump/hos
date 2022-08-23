@@ -79,6 +79,10 @@
 				getCodeNum: 0
 			}
 		},
+		
+		onLoad() {
+			
+		},
 		methods: {
 			// 获取手机验证码
 			getPhoneCode: function() {
@@ -135,6 +139,21 @@
 			},
 			// 将数据存进数据库后跳转到个人中心页面
 			toAddCard:function(){
+				uni.getUserProfile({
+					desc:"用于完善用户信息",  //必填，声明获取用户个人信息后的用途，不超过30个字符
+					success: (res) => {
+						console.log(res.userInfo.avatarUrl)
+						uni.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
+						uni.setStorageSync("nickName", res.userInfo.nickName)
+					},
+					fail: (err) => {
+						console.log(err)
+						uni.showToast({
+							icon:"none",
+							title:'用户拒绝获取'
+						})
+					}  
+				});
 				userRegister({
 					// #ifdef MP
 					avatarUrl: uni.getStorageSync('avatarUrl'),
@@ -144,6 +163,7 @@
 					avatarUrl: 'http://image.yujian95.cn/FmxdyLFebwrEhId3tyb7AXo5Xryc',
 					// #endif
 					name: this.form.name,
+					openid: uni.getStorageSync('openid'),
 					password: md5(this.form.password),
 					phone: this.form.phone
 				}).then(res => {
@@ -154,6 +174,7 @@
 							icon: 'success'
 						})
 						uni.navigateBack()
+						
 					} else {
 						uni.hideLoading()
 						error('该手机号已存在，请登录',)

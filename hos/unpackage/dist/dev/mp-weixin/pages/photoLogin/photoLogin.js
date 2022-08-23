@@ -161,6 +161,7 @@ var _default =
     } },
 
   onLoad: function onLoad() {
+
     var that = this;
     var openid = uni.getStorageSync("openid");
     console.log("------页面加载中，获取openid-------");
@@ -204,19 +205,21 @@ var _default =
         } });
 
     }
-    // if(uni.getStorageSync("userAccountId")){
-    this.Countdown();
-    // 	console.log("----------------------已经登录了")
-    // }
-    // else{
-    // 	uni.showToast({
-    // 		icon:"none",
-    // 		title:'请先注册账号'
-    // 	})
-    // 	uni.navigateTo({
-    // 		url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
-    // 	})
-    // }
+
+    if (uni.getStorageSync("userAccountId")) {
+      uni.setStorageSync("isAlreadyLogin", true);
+      this.Countdown();
+      console.log("----------------------已经登录了");
+    } else
+    {
+      uni.showToast({
+        icon: "none",
+        title: '请先注册账号' });
+
+      uni.navigateTo({
+        url: '../../pagesB/pages/center/login/quickRegister/quickRegister' });
+
+    }
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

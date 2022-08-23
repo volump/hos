@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/photoLogin/photoLogin",
+    "pages/getAvaturNik/getAvaturNik",
+    "pages/getPhone/getPhone",
+    "pages/getOpenId/getOpenId",
     "pages/home/appointmentHome/appointmentHome",
     "pages/center/center",
     "pages/home/appointmentHome/selectDepartment/selectDepartment"
@@ -69,6 +72,5 @@
   },
   "usingComponents": {
     "no-data-page": "/component/noDataPage"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

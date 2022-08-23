@@ -23,6 +23,7 @@
 				}
 		},
 		onLoad() {
+			
 			var that = this
 			var openid = uni.getStorageSync("openid")
 			console.log("------页面加载中，获取openid-------")
@@ -66,19 +67,21 @@
 					}
 				});
 			}
-			// if(uni.getStorageSync("userAccountId")){
+			
+			if(uni.getStorageSync("userAccountId")){
+				uni.setStorageSync("isAlreadyLogin", true)
 			 	this.Countdown()
-			// 	console.log("----------------------已经登录了")
-			// }
-			// else{
-			// 	uni.showToast({
-			// 		icon:"none",
-			// 		title:'请先注册账号'
-			// 	})
-			// 	uni.navigateTo({
-			// 		url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
-			// 	})
-			// }
+				console.log("----------------------已经登录了")
+			}
+			else{
+				uni.showToast({
+					icon:"none",
+					title:'请先注册账号'
+				})
+				uni.navigateTo({
+					url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
+				})
+			}
 		}
 	}
 </script>

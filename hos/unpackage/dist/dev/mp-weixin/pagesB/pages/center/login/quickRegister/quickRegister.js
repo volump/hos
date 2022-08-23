@@ -256,17 +256,36 @@ var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 21
 //
 var _default = { data: function data() {return { // 表单的数据
       form: { name: '', phone: '', identifyCode: '', password: '', checkPassword: '' }, isValidate: true, // 用作验证这些表单是否都通过验证
-      getCodeNum: 0 };}, methods: { // 获取手机验证码
+      getCodeNum: 0 };}, onLoad: function onLoad() {}, methods: { // 获取手机验证码
     getPhoneCode: function getPhoneCode() {if (this.isValidate && this.form.phone !== '') {this.getCodeNum = 60;var _this = this;var time = setInterval(function () {if (_this.getCodeNum == 0) {clearInterval(time);return;}_this.getCodeNum--;}, 1000);(0, _quickRegister.getPhoneCode)(this.form.phone).then(function (res) {}).catch(function () {uni.showToast({ title: '发送失败，请检查网络', icon: 'none' });});}}, // 校验验证码
     validataCode: function validataCode() {var _this2 = this; // 校验表单验证是否都过关
       for (var item in this.form) {if (this.form[item] === '' || this.form[item] === null || this.form[item] === undefined) {this.isValidate = false;break;}}if (this.isValidate) {// 表达验证没问题之后首先验证验证码是否正确
-        uni.showLoading({ title: '加载中' });(0, _quickRegister.validataCode)(this.form.phone, this.form.identifyCode).then(function (res) {console.log(res);if (res.data.code === 200) {_this2.toAddCard();} else {uni.hideLoading();(0, _errorTips.error)('验证码错误');}}).catch(function () {(0, _errorTips.error)('网络');});
+        uni.showLoading({ title: '加载中' });(0, _quickRegister.validataCode)(this.form.phone, this.form.identifyCode).then(function (res) {console.log(res);if (res.data.code === 200) {_this2.toAddCard();} else {uni.hideLoading();(0, _errorTips.error)('验证码错误');
+          }
+        }).catch(function () {
+          (0, _errorTips.error)('网络');
+        });
       } else {
         (0, _errorTips.error)('请将信息填写完整');
       }
     },
     // 将数据存进数据库后跳转到个人中心页面
     toAddCard: function toAddCard() {
+      uni.getUserProfile({
+        desc: "用于完善用户信息", //必填，声明获取用户个人信息后的用途，不超过30个字符
+        success: function success(res) {
+          console.log(res.userInfo.avatarUrl);
+          uni.setStorageSync("avatarUrl", res.userInfo.avatarUrl);
+          uni.setStorageSync("nickName", res.userInfo.nickName);
+        },
+        fail: function fail(err) {
+          console.log(err);
+          uni.showToast({
+            icon: "none",
+            title: '用户拒绝获取' });
+
+        } });
+
       (0, _quickRegister.userRegister)({
 
         avatarUrl: uni.getStorageSync('avatarUrl'),
@@ -276,6 +295,7 @@ var _default = { data: function data() {return { // 表单的数据
 
 
         name: this.form.name,
+        openid: uni.getStorageSync('openid'),
         password: (0, _jsMd.default)(this.form.password),
         phone: this.form.phone }).
       then(function (res) {
@@ -286,6 +306,7 @@ var _default = { data: function data() {return { // 表单的数据
             icon: 'success' });
 
           uni.navigateBack();
+
         } else {
           uni.hideLoading();
           (0, _errorTips.error)('该手机号已存在，请登录');
