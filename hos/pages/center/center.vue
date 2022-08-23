@@ -4,7 +4,7 @@
 			<view class="row-box" v-if="isAlreadyLogin" @click="toBaseInfo()">
 				<!-- <view class="avatar-url-box"> -->
 					<!-- <open-data type="userAvatarUrl"></open-data> -->
-					<image :src="userBaseInfo.avatarUrl" class="avatar-url-box"></image>
+					<image :src="avatarUrl" class="avatar-url-box"></image>
 				<!-- </view> -->
 				<view class="name-card-box">
 					<view class="name-text-box">
@@ -77,9 +77,9 @@
 				isGetTreatCard: false, // 是否填写信息获取了自己的就诊卡
 				iconUrl: '/static/center/',
 				gender: 1 ,
+				avatarUrl: uni.getStorageSync("avatarUrl"),
 				userBaseInfo: {
 					name: '',
-					avatarUrl: '',
 					phone: ''
 				},
 				cardID: uni.getStorageSync('cardID') || ''
@@ -230,6 +230,7 @@
 			},
 		},
 		onShow() {
+			console.log("avatarUrl ========"+ uni.getStorageSync("avatarUrl"))
 			// console.log(md5("admin"))
 			if(uni.getStorageSync('isAlreadyLogin')) {
 				this.getUserInfo()

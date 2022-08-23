@@ -1,23 +1,24 @@
 <template>
 	<view>
 	
-		<view class="input-inbox" v-if="isAuthrization">
+		<view class="input-inbox">
 			<input class="input" placeholder-class="placeholder-class" 
 			placeholder="请输入手机号码" v-model="name"/>
 		</view>
-		<view class="password-row-box" v-if="isAuthrization">
+		<view class="password-row-box" >
 			<input class="input" :password="!isVisible" v-model="password"
 			placeholder-class="placeholder-class" placeholder="请输入登录密码" />
 			<image class="eye-icon" :src="isVisible? '/static/login/eye.png':'/static/login/eye-off.png'" @click="changeVisible()"></image>
 		</view>
-	 
-		<button v-if="!isAuthrization" open-type="getUserInfo" class="button" @getuserinfo="getUserInfo()" @tap="getUserInfo()">授权登录</button>
+	    <view>
+			<button class="button" @click="toPageCenter()">登录</button>
+		</view>
 		
-		<button v-else class="button" @click="toPageCenter()">登录</button>
-		<view class="enroll-changepassword-box" v-if="isAuthrization">
+		<view class="enroll-changepassword-box" v-if="1">
 			<text class="left" @click="toRegister()" :class="visited == 1? 'visited-color' : ''">立即注册</text>
 			<text class="right" :class="visited == 2? 'visited-color' : ''" @click="toForgotPassword()">忘记密码</text>
 		</view>
+		<button   class="button" @click="getUserInfo()"> 使用微信登录</button>
 	</view>
 </template>
 
@@ -74,9 +75,50 @@
 			},
 			// 授权获取用户信息
 			getUserInfo: function() {
-				var _this = this
+				// var _this = this
+				uni.getUserProfile({
+					desc:"用于完善用户信息",  //必填，声明获取用户个人信息后的用途，不超过30个字符
+					success: (res) => {
+						console.log(res.userInfo.avatarUrl)
+						uni.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
+						uni.setStorageSync("nickName", res.userInfo.nickName)
+						if(uni.getStorageSync('phone')){
+							uni.setStorageSync("isAlreadyLogin", true)
+							uni.showToast({
+									icon:"none",
+									title:'登录成功'
+							}),
+							uni.switchTab({
+								url:'../../../../pages/center/center'
+							})
+						}
+						// if(uni.getStorageSync("phone")){
+						// 	uni.setStorageSync("isAlreadyLogin", true)
+							// uni.showToast({
+							// 	icon:"none",
+							// 	title:'登录成功'
+							// })
+						// 	uni.switchTab({
+						// 		url:'../../../../pages/center/center'
+						// 	})
+						// }
+						else{
+							uni.showToast({
+								icon:"none",
+								title:'mei'
+							})
+						}
+					},
+					fail: (err) => {
+						console.log(err)
+						uni.showToast({
+							icon:"none",
+							title:'用户拒绝获取'
+						})
+					}  
+				})
 			
-				this.weChat()
+				// this.weChat()
 			
 			},
 			// 跳转到center页面
@@ -115,35 +157,58 @@
 			},
 
 			
-			// 微信小程序的授权
-			weChat: function() {
-				uni.showLoading({
-					title: '加载中'
-				})
-				console.log("小程序授权--------------")
-				let _this = this
-				wx.getSetting({
-					success(res) {
-						if (res.authSetting['scope.userInfo']) {
-							// 已经授权，可以直接调用 getUserInfo 获取头像昵称
-							wx.getUserInfo({
-								success: function(res) {
-									uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
-									uni.setStorageSync("isAuthrization", true)
-									_this.isAuthrization = true
-									try {} catch (e) {}
-									uni.hideLoading()
-									return true
-								},
-								fail: () => {
-									uni.hideLoading()
-									return false
-								}
-							})
-						}
-					}
-				})
-			},
+			// // 微信小程序的授权
+			// weChat: function() {
+			// 	uni.showLoading({
+			// 		title: '加载中'
+			// 	})
+			// 	console.log("小程序授权--------------")
+			// 	uni.getUserProfile({
+			// 		desc:"用于完善用户信息",  //必填，声明获取用户个人信息后的用途，不超过30个字符
+			// 		success: (res) => {
+			// 			console.log(res.userInfo.avatarUrl)
+			// 			uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
+			// 			uni.setStorageSync("isAuthrization", true)
+			// 			console.log(res.userInfo.avatarUrl+"---123456")
+			// 			uni.showToast({
+			// 				icon:"none",
+			// 				title:'获取成功'
+			// 			})
+			// 			uni.navigateTo({
+			// 				url:"../../../../pages/center/center"
+			// 			})
+			// 		},
+			// 		fail: (err) => {
+			// 			console.log(err)
+			// 			uni.showToast({
+			// 				icon:"none",
+			// 				title:'用户拒绝获取'
+			// 			})
+			// 		}  
+			// 	})
+			// 	// let _this = this
+			// 	// wx.getSetting({
+			// 	// 	success(res) {
+			// 	// 		if (res.authSetting['scope.userInfo']) {
+			// 	// 			// 已经授权，可以直接调用 getUserInfo 获取头像昵称
+			// 	// 			wx.getUserInfo({
+			// 	// 				success: function(res) {
+			// 	// 					uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
+			// 	// 					uni.setStorageSync("isAuthrization", true)
+			// 	// 					_this.isAuthrization = true
+			// 	// 					try {} catch (e) {}
+			// 	// 					uni.hideLoading()
+			// 	// 					return true
+			// 	// 				},
+			// 	// 				fail: () => {
+			// 	// 					uni.hideLoading()
+			// 	// 					return false
+			// 	// 				}
+			// 	// 			})
+			// 	// 		}
+			// 	// 	}
+			// 	// })
+			// },
 		}
 	}
 </script>

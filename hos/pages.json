@@ -6,7 +6,10 @@
 			"path": "pages/photoLogin/photoLogin",
 			"style": {}
 		},
-		
+		{
+		    "path" : "pages/getAvaturNik/getAvaturNik",
+		    "style" : {}
+		},
 		{
 		    "path" : "pages/getOpenId/getOpenId",
 		    "style" : {}
@@ -16,8 +19,6 @@
 			"path": "pages/home/appointmentHome/appointmentHome",
 			"style": {}
 		},
-		
-	     
 		
 		{
 			"path": "pages/center/center",
@@ -30,6 +31,7 @@
 			"style": {}
 		}
 
+        
     ],
 	"subPackages": [{
 			"root": "pagesA",

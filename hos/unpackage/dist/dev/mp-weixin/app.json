@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/photoLogin/photoLogin",
+    "pages/getAvaturNik/getAvaturNik",
     "pages/getOpenId/getOpenId",
     "pages/home/appointmentHome/appointmentHome",
     "pages/center/center",

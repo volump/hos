@@ -14,7 +14,7 @@ var _filters = _interopRequireDefault(__webpack_require__(/*! @/common/js/filter
 for (var item in _filters.default) {
   _vue.default.filter(item, _filters.default[item]);
 }
-_vue.default.config.productionTip = false;var noDataPage = function noDataPage() {__webpack_require__.e(/*! require.ensure | component/noDataPage */ "component/noDataPage").then((function () {return resolve(__webpack_require__(/*! @/component/noDataPage.vue */ 211));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+_vue.default.config.productionTip = false;var noDataPage = function noDataPage() {__webpack_require__.e(/*! require.ensure | component/noDataPage */ "component/noDataPage").then((function () {return resolve(__webpack_require__(/*! @/component/noDataPage.vue */ 217));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 _vue.default.component('noDataPage', noDataPage);

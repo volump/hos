@@ -23,11 +23,10 @@
 				}
 		},
 		onLoad() {
-			
 			var that = this
 			var openid = uni.getStorageSync("openid")
 			console.log("------页面加载中，获取openid-------")
-			if (openid) {
+			if (!openid) {
 				uni.login({
 					provider: 'weixin',
 					success: function(res) {
@@ -47,7 +46,9 @@
 											console.log("result =======" + result.data.data)
 											uni.setStorageSync("openid", result.data.data.openid)
 											uni.setStorageSync("userInfo", result.data.data)
+											uni.setStorageSync("phone", result.data.data.userName)
 											console.log("openid =====:"+result.data.data.openid)
+											console.log("phone =======" + uni.getStorageSync("phone"))
 											console.log(uni.getStorageSync("userInfo"))
 										},
 										fail(ex) {
