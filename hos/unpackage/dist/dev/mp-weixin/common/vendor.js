@@ -760,7 +760,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1728,7 +1728,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 103:
+/***/ 109:
 /*!***********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/hospital.js ***!
   \***********************************************************************************/
@@ -1736,8 +1736,8 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getAllHospital = getAllHospital;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getAllHospital = getAllHospital;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                          * 作为医院API接口
                                                                                                                                                                                          * 1 获取全部医院的信息
@@ -1908,7 +1908,7 @@ filters;exports.default = _default;
 
 /***/ }),
 
-/***/ 112:
+/***/ 118:
 /*!*********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/credit.js ***!
   \*********************************************************************************/
@@ -1916,7 +1916,7 @@ filters;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getMonthCredit = getMonthCredit;exports.getHistoryCredit = getHistoryCredit;exports.getLostCreditRecord = getLostCreditRecord;exports.getCreditDetail = getCreditDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getMonthCredit = getMonthCredit;exports.getHistoryCredit = getHistoryCredit;exports.getLostCreditRecord = getLostCreditRecord;exports.getCreditDetail = getCreditDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                                                                                                                                                                                                                                                                       * 信用api
                                                                                                                                                                                                                                                                                                                                                                                                                                       * 1 获取每个月的cardId的信用
@@ -1955,7 +1955,7 @@ function getCreditDetail(appointmentId) {
 
 /***/ }),
 
-/***/ 121:
+/***/ 127:
 /*!************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/js/inputCheck.js ***!
   \************************************************************************************/
@@ -2046,7 +2046,7 @@ function checkGender(identify) {
 
 /***/ }),
 
-/***/ 162:
+/***/ 168:
 /*!*********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/doctor.js ***!
   \*********************************************************************************/
@@ -2054,8 +2054,8 @@ function checkGender(identify) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getDcotorByName = getDcotorByName;exports.getDcotorByDepartment = getDcotorByDepartment;exports.getDoctorInfoById = getDoctorInfoById;exports.getVisitPlanList = getVisitPlanList;exports.getHospitalVisitPlan = getHospitalVisitPlan;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDcotorByName = getDcotorByName;exports.getDcotorByDepartment = getDcotorByDepartment;exports.getDoctorInfoById = getDoctorInfoById;exports.getVisitPlanList = getVisitPlanList;exports.getHospitalVisitPlan = getHospitalVisitPlan;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                          * 用于所有的医生的Api接口
                                                                                                                                                                                          * 1 通过医生名字获取医生信息
@@ -7627,7 +7627,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7648,14 +7648,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7740,7 +7740,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8147,7 +8147,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 238:
+/***/ 244:
 /*!*************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/outpatient.js ***!
   \*************************************************************************************/
@@ -8155,8 +8155,8 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getOutpatientByHospital = getOutpatientByHospital;exports.getOutpatientListById = getOutpatientListById;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getOutpatientByHospital = getOutpatientByHospital;exports.getOutpatientListById = getOutpatientListById;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                          * 用于所有的门诊的Api接口
                                                                                                                                                                                          * 1 获取某个医院某个专科的门诊信息
@@ -8181,7 +8181,7 @@ function getOutpatientListById(pageNum, pageSize, specialId) {
 
 /***/ }),
 
-/***/ 267:
+/***/ 273:
 /*!***********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/password.js ***!
   \***********************************************************************************/
@@ -8189,8 +8189,8 @@ function getOutpatientListById(pageNum, pageSize, specialId) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getPasswordCode = getPasswordCode;exports.updatePassword = updatePassword;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getPasswordCode = getPasswordCode;exports.updatePassword = updatePassword;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 // 6 修改密码的短信验证
 function getPasswordCode(phone) {
@@ -8242,7 +8242,18 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 34:
+/***/ 4:
+/*!***********************************************************************!*\
+  !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/pages.json ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 40:
 /*!***********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/js/errorTips.js ***!
   \***********************************************************************************/
@@ -8276,7 +8287,7 @@ function error(value) {
 
 /***/ }),
 
-/***/ 35:
+/***/ 41:
 /*!***********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/userInfo.js ***!
   \***********************************************************************************/
@@ -8284,19 +8295,19 @@ function error(value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getUserBaseInfo = getUserBaseInfo;exports.getUserCardInfo = getUserCardInfo;exports.addCard = addCard;exports.getIsCardOverIimit = getIsCardOverIimit;exports.deleteCardInfo = deleteCardInfo;exports.updateCardInfo = updateCardInfo;exports.updateBaseInfo = updateBaseInfo;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getUserBaseInfo = getUserBaseInfo;exports.getOpenId = getOpenId;exports.getUserCardInfo = getUserCardInfo;exports.addCard = addCard;exports.getIsCardOverIimit = getIsCardOverIimit;exports.deleteCardInfo = deleteCardInfo;exports.updateCardInfo = updateCardInfo;exports.updateBaseInfo = updateBaseInfo;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 该页面作为获取用户的基本信息的API接口,包括自己的和别人的
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 1 获取用户账号的基本信息
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 2 获取用户就诊卡信息(根据账户ID获得)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 3 添加就诊卡信息
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 4 获取用户所添加的就诊卡是否超过限制
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 5 删除就诊卡 (通过关系编号)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 6 修改就诊卡信息(通过关系编号)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 7 获取某个就诊卡的信息(通过就诊卡id)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 8 修改用户账号的基本信息
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 该页面作为获取用户的基本信息的API接口,包括自己的和别人的
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 1 获取用户账号的基本信息
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 2 获取用户就诊卡信息(根据账户ID获得)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 3 添加就诊卡信息
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 4 获取用户所添加的就诊卡是否超过限制
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 5 删除就诊卡 (通过关系编号)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 6 修改就诊卡信息(通过关系编号)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 7 获取某个就诊卡的信息(通过就诊卡id)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 8 修改用户账号的基本信息
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * **/
 // 1 获取用户账号的基本信息
 function getUserBaseInfo() {
   return (0, _request.default)({
@@ -8304,6 +8315,14 @@ function getUserBaseInfo() {
     method: 'get' });
 
 }
+
+function getOpenId(code) {
+  return (0, _request.default)({
+    url: '/user/wx?code=' + code,
+    method: 'get' });
+
+}
+
 // 2 获取用户就诊卡信息(根据账户ID获得)
 function getUserCardInfo(id) {
   return (0, _request.default)({
@@ -8359,7 +8378,7 @@ function updateBaseInfo(userID, data) {
 
 /***/ }),
 
-/***/ 36:
+/***/ 42:
 /*!************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/utils/request.js ***!
   \************************************************************************************/
@@ -8368,9 +8387,9 @@ function updateBaseInfo(userID, data) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;
-var _config = __webpack_require__(/*! ./config.js */ 37);
-var _auth = __webpack_require__(/*! ./auth.js */ 38);
-var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 39); // 作为ajax请求的统一的api请求
+var _config = __webpack_require__(/*! ./config.js */ 43);
+var _auth = __webpack_require__(/*! ./auth.js */ 44);
+var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 45); // 作为ajax请求的统一的api请求
 
 function Request(data) {
   console.log((0, _auth.getToken)());
@@ -8430,7 +8449,7 @@ function _default(data, url, method) {
 
 /***/ }),
 
-/***/ 37:
+/***/ 43:
 /*!***********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/utils/config.js ***!
   \***********************************************************************************/
@@ -8448,7 +8467,7 @@ exports.requestURL = requestURL;
 
 /***/ }),
 
-/***/ 38:
+/***/ 44:
 /*!*********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/utils/auth.js ***!
   \*********************************************************************************/
@@ -8479,7 +8498,7 @@ function removeToken() {
 
 /***/ }),
 
-/***/ 39:
+/***/ 45:
 /*!****************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/quickRegister.js ***!
   \****************************************************************************************/
@@ -8488,7 +8507,7 @@ function removeToken() {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.tokenRefresh = tokenRefresh;exports.getPhoneCode = getPhoneCode;exports.validataCode = validataCode;exports.userRegister = userRegister;exports.userLogin = userLogin;
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 用于注册时的api接口页面
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 用于注册时的api接口页面
 
 /**
  * 当用户还没有登录时,所用的api接口的方式和登录以后需要token的不一样
@@ -8537,18 +8556,7 @@ function userLogin(name, password) {
 
 /***/ }),
 
-/***/ 4:
-/*!***********************************************************************!*\
-  !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/pages.json ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 40:
+/***/ 46:
 /*!*******************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/utils/unloginRequest.js ***!
   \*******************************************************************************************/
@@ -8557,8 +8565,8 @@ function userLogin(name, password) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;
-var _config = __webpack_require__(/*! ./config.js */ 37);
-var _auth = __webpack_require__(/*! ./auth.js */ 38); // 没有登录前的没有token的请求
+var _config = __webpack_require__(/*! ./config.js */ 43);
+var _auth = __webpack_require__(/*! ./auth.js */ 44); // 没有登录前的没有token的请求
 
 function unloginRegister(data) {
   return new Promise(function (resolve, reject) {
@@ -8595,7 +8603,7 @@ function _default(data, url, method) {
 
 /***/ }),
 
-/***/ 41:
+/***/ 47:
 /*!*******************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/node_modules/js-md5/src/md5.js ***!
   \*******************************************************************************************/
@@ -8628,7 +8636,7 @@ function _default(data, url, method) {
     root = self;
   }
   var COMMON_JS = !root.JS_MD5_NO_COMMON_JS && typeof module === 'object' && module.exports;
-  var AMD =  true && __webpack_require__(/*! !webpack amd options */ 44);
+  var AMD =  true && __webpack_require__(/*! !webpack amd options */ 50);
   var ARRAY_BUFFER = !root.JS_MD5_NO_ARRAY_BUFFER && typeof ArrayBuffer !== 'undefined';
   var HEX_CHARS = '0123456789abcdef'.split('');
   var EXTRA = [128, 32768, 8388608, -2147483648];
@@ -9286,11 +9294,11 @@ function _default(data, url, method) {
     }
   }
 })();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 42), __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 48), __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
 
 /***/ }),
 
-/***/ 42:
+/***/ 48:
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -9321,7 +9329,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 43);
+        if (!path) path = __webpack_require__(/*! path */ 49);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -9335,7 +9343,7 @@ exports.features = {};
 
 /***/ }),
 
-/***/ 43:
+/***/ 49:
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -9645,11 +9653,11 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 42)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 48)))
 
 /***/ }),
 
-/***/ 44:
+/***/ 50:
 /*!****************************************!*\
   !*** (webpack)/buildin/amd-options.js ***!
   \****************************************/
@@ -9663,7 +9671,7 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ 53:
+/***/ 59:
 /*!*************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/department.js ***!
   \*************************************************************************************/
@@ -9671,8 +9679,8 @@ module.exports = __webpack_amd_options__;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getDepartmentHospital = getDepartmentHospital;exports.getAllDepartmentList = getAllDepartmentList;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDepartmentHospital = getDepartmentHospital;exports.getAllDepartmentList = getAllDepartmentList;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                          * 用于所有的专科的Api接口
                                                                                                                                                                                          * 1 通过医院ID获取专科
@@ -9696,7 +9704,7 @@ function getAllDepartmentList(pageNum, pageSize, name) {
 
 /***/ }),
 
-/***/ 60:
+/***/ 66:
 /*!**********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/appoint.js ***!
   \**********************************************************************************/
@@ -9704,7 +9712,7 @@ function getAllDepartmentList(pageNum, pageSize, name) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.addAppoint = addAppoint;exports.valifyBlacklist = valifyBlacklist;exports.getAppointRecord = getAppointRecord;exports.getAllAppointRecord = getAllAppointRecord;exports.getAwaitQueue = getAwaitQueue;exports.cancelAppoint = cancelAppoint;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.addAppoint = addAppoint;exports.valifyBlacklist = valifyBlacklist;exports.getAppointRecord = getAppointRecord;exports.getAllAppointRecord = getAllAppointRecord;exports.getAwaitQueue = getAwaitQueue;exports.cancelAppoint = cancelAppoint;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * 用户挂号的api
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * 1 添加挂号记录
@@ -9766,7 +9774,7 @@ function cancelAppoint(id) {
 
 /***/ }),
 
-/***/ 61:
+/***/ 67:
 /*!**********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/js/formDate.js ***!
   \**********************************************************************************/
@@ -9874,7 +9882,7 @@ function formDate(dateR, rule) {
 
 /***/ }),
 
-/***/ 86:
+/***/ 92:
 /*!**********************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/outCall.js ***!
   \**********************************************************************************/
@@ -9882,8 +9890,8 @@ function formDate(dateR, rule) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getOutCall = getOutCall;exports.getOutCallByDoctor = getOutCallByDoctor;exports.getClinicById = getClinicById;exports.getTreatRecord = getTreatRecord;exports.getTreatRecordDetail = getTreatRecordDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 36));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getOutCall = getOutCall;exports.getOutCallByDoctor = getOutCallByDoctor;exports.getClinicById = getClinicById;exports.getTreatRecord = getTreatRecord;exports.getTreatRecordDetail = getTreatRecordDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 42));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 /**
                                                                                                                                                                                          * 用于获取出诊计划的接口
                                                                                                                                                                                          * 1 搜索出诊计划,医院-专科-门诊-时间获取

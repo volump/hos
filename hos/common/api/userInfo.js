@@ -18,6 +18,14 @@ import request from '@/common/utils/request.js'
 		 method: 'get'
 	 })
  }
+ 
+ export function getOpenId(code) {
+	 return request({
+		 url: '/user/wx?code='+code,
+		 method: 'get'
+	 })
+ }
+ 
  // 2 获取用户就诊卡信息(根据账户ID获得)
  export function getUserCardInfo(id) {
 	 return request({

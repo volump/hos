@@ -10,8 +10,9 @@
 			placeholder-class="placeholder-class" placeholder="请输入登录密码" />
 			<image class="eye-icon" :src="isVisible? '/static/login/eye.png':'/static/login/eye-off.png'" @click="changeVisible()"></image>
 		</view>
-	
+	 
 		<button v-if="!isAuthrization" open-type="getUserInfo" class="button" @getuserinfo="getUserInfo()" @tap="getUserInfo()">授权登录</button>
+		
 		<button v-else class="button" @click="toPageCenter()">登录</button>
 		<view class="enroll-changepassword-box" v-if="isAuthrization">
 			<text class="left" @click="toRegister()" :class="visited == 1? 'visited-color' : ''">立即注册</text>
@@ -27,7 +28,7 @@
 	import md5 from 'js-md5';
 	import {error} from '@/common/js/errorTips.js'
 	import {getUserCardInfo} from '@/common/api/userInfo.js'
-	
+	import { getOpenId } from '@/common/api/userInfo.js'
 	export default {
 		data() {
 			return {
@@ -39,6 +40,10 @@
 				isPasswordVisited: false,
 				isAuthrization: uni.getStorageSync("isAuthrization")
 			}
+		},
+		
+		onLoad(){
+			console.log("openid == " + uni.getStorageSync("openid"))
 		},
 		methods: {
 			// 切换是否可见密码
@@ -70,6 +75,7 @@
 			// 授权获取用户信息
 			getUserInfo: function() {
 				var _this = this
+			
 				this.weChat()
 			
 			},
@@ -114,6 +120,7 @@
 				uni.showLoading({
 					title: '加载中'
 				})
+				console.log("小程序授权--------------")
 				let _this = this
 				wx.getSetting({
 					success(res) {
