@@ -1,1 +1,0 @@
-<view><view><button data-event-opts="{{[['tap',[['toPageCenter']]]]}}" class="button" bindtap="__e">登录</button></view></view>

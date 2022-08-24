@@ -1,1 +1,0 @@
-<view><button data-event-opts="{{[['tap',[['logins',['$event']]]]]}}" bindtap="__e">测试登录</button><image src="{{myAvaturUrl}}"></image></view>

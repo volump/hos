@@ -146,8 +146,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsMd = _interopRequireDefault(__webpack_require__(/*! js-md5 */ 18));
-var _auth = __webpack_require__(/*! @/common/utils/auth.js */ 25);
-var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 22);
+var _auth = __webpack_require__(/*! @/common/utils/auth.js */ 22);
+var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 23);
 var _inputCheck = __webpack_require__(/*! @/common/js/inputCheck.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //

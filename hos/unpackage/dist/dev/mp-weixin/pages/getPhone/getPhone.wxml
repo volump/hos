@@ -1,1 +1,0 @@
-<view><block wx:if="{{isphone}}"><button class="phone" open-type="getPhoneNumber" data-event-opts="{{[['getphonenumber',[['getPhoneNumber',['$event']]]]]}}" bindgetphonenumber="__e">获取电话号码</button></block></view>
