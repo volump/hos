@@ -160,10 +160,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _hospital = __webpack_require__(/*! @/common/api/hospital.js */ 276);
+var _hospital = __webpack_require__(/*! @/common/api/hospital.js */ 277);
 
 
-var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 209); //
+var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 216); //
 //
 //
 //

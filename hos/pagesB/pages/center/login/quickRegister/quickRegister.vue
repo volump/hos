@@ -54,11 +54,13 @@
 			    </view>
 			</view>
 		</view>
+		<button class="button" @click="getUserInfo()">获取头像等信息</button>
 		<button class="button" @click="validataCode()">立即注册</button>
 	</view>
 </template>
 
 <script>
+	import { setToken, getToken } from '@/common/utils/auth.js'
 	import md5 from 'js-md5';
 	import  { inputCheck, checkPassword } from '@/common/js/inputCheck.js';
 	import {error} from '@/common/js/errorTips.js'
@@ -137,12 +139,11 @@
 					error('请将信息填写完整')
 				}
 			},
-			// 将数据存进数据库后跳转到个人中心页面
-			toAddCard:function(){
+			getUserInfo: function(){
 				uni.getUserProfile({
 					desc:"用于完善用户信息",  //必填，声明获取用户个人信息后的用途，不超过30个字符
 					success: (res) => {
-						console.log(res.userInfo.avatarUrl)
+						console.log("头像是+++++++++"+res.userInfo.avatarUrl)
 						uni.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
 						uni.setStorageSync("nickName", res.userInfo.nickName)
 					},
@@ -153,7 +154,48 @@
 							title:'用户拒绝获取'
 						})
 					}  
-				});
+				})
+			},
+			quicklogin: function() {
+				let name = "15811111111"
+				let password  = "w123456789"
+				var errorName = inputCheck('账号', 'string', name)
+				var errorPassword = inputCheck('密码', 'password', password)
+				if(errorName !== 'ok') {
+					error(errorName)
+				} else if(errorPassword !== 'ok') {
+					error(errorPassword)
+				} else {
+					uni.showLoading({
+						title: '加载中'
+					})
+					userLogin(name, md5(password)).then(res => {
+						if(res.data.code === 200) {
+							uni.setStorageSync('isAlreadyLogin', true);
+							console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
+							setToken(res.data.data)
+							// this.getMyselfCardInfo()
+							uni.showToast({
+								title: '登录成功',
+								icon: 'success'
+							})
+							uni.switchTab({
+								url:'/pages/center/center'
+							})
+							
+						} else {
+							uni.hideLoading()
+							error('账号或密码错误')
+						}
+					}).catch(() => {
+						uni.hideLoading()
+						error('网络')
+					})
+				}
+			},
+			// 将数据存进数据库后跳转到个人中心页面
+			toAddCard:function(){
+				
 				userRegister({
 					// #ifdef MP
 					avatarUrl: uni.getStorageSync('avatarUrl'),
@@ -168,13 +210,15 @@
 					phone: this.form.phone
 				}).then(res => {
 					if(res.data.code === 200) {
-						uni.hideLoading()
+						console.log("123455---------")
+						console.log("phone === " + this.form.phone + "md5password === " + this.form.password)
 						uni.showToast({
 							title: '注册成功',
 							icon: 'success'
 						})
-						uni.navigateBack()
-						
+						uni.navigateTo({
+							url:'/pagesB/pages/center/login/login'
+						})
 					} else {
 						uni.hideLoading()
 						error('该手机号已存在，请登录',)
@@ -183,7 +227,8 @@
 					uni.hideLoading()
 					error('网络')
 				})
-					
+				
+				
 			},
 			// 用于表单的判断
 			inputCheck:function(name, rule, value){

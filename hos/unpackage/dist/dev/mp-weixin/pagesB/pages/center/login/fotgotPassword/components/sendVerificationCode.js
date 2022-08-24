@@ -140,7 +140,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _password = __webpack_require__(/*! @/common/api/password.js */ 440);
-var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 214); //
+var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 22); //
 //
 //
 //

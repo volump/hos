@@ -68,8 +68,9 @@
 	import { error } from '@/common/js/errorTips.js'
 	import { getUserBaseInfo } from '@/common/api/userInfo.js'
 	import {getUserCardInfo} from '@/common/api/userInfo.js'
-	import md5 from 'js-md5'
-	
+	import  { inputCheck } from '@/common/js/inputCheck.js';
+	import md5 from 'js-md5';
+	import { userLogin } from '@/common/api/quickRegister.js';
 	export default {
 		data() {
 			return {
@@ -90,6 +91,7 @@
 			this.isAlreadyLogin = uni.getStorageSync('isAlreadyLogin')
 		},
 		methods: {
+			
 			// 跳转到登录页面
 			turnLogin: function() {
 				uni.navigateTo({
@@ -239,6 +241,7 @@
 			}
 			this.isAlreadyLogin = uni.getStorageSync('isAlreadyLogin')
 		}
+		
 	}
 </script>
 

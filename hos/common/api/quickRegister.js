@@ -16,6 +16,8 @@ export function tokenRefresh(token) {
 		 method: 'get'
 	 })
  }
+ 
+
  // 2 获取手机验证码
  export function getPhoneCode(phone) {
 	 return unloginRegister({
@@ -40,6 +42,7 @@ export function tokenRefresh(token) {
  }
  // 5 账号登录
  export function userLogin(name, password) {
+	 console.log("进入登录入口++++++++++++++")
 	 return unloginRegister({
 		 url: '/power/account/login?name=' + name + '&password=' + password,
 		 method: 'get'

@@ -7,7 +7,12 @@
 </template>
 
 <script>
+	import md5 from 'js-md5';
+	import { setToken, getToken } from '@/common/utils/auth.js'
+	import { userLogin } from '@/common/api/quickRegister.js';
+	import  { inputCheck } from '@/common/js/inputCheck.js';
 	export default {
+		
 		data() {
 			return {
 				
@@ -20,10 +25,55 @@
 							url: '/pages/home/appointmentHome/appointmentHome'
 						})
 					}, 3000);
-				}
+				},
+				autologin: function() {
+					console.log("openid =====:"+ uni.getStorageSync('openid'))
+					console.log("accountId =====:"+ uni.getStorageSync('accountID'))
+					if(uni.getStorageSync("accountID")){
+						let name = "15811111111"
+						let password  = "w123456789"
+						var errorName = inputCheck('账号', 'string', name)
+						var errorPassword = inputCheck('密码', 'password', password)
+						if(errorName !== 'ok') {
+							error(errorName)
+						} else if(errorPassword !== 'ok') {
+							error(errorPassword)
+						} else {
+							uni.showLoading({
+								title: '加载中'
+							})
+							userLogin(name, md5(password)).then(res => {
+								if(res.data.code === 200) {
+									uni.setStorageSync('isAlreadyLogin', true);
+									console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
+									setToken(res.data.data)
+									console.log("token ====="+getToken())
+									
+								} else {
+									uni.hideLoading()
+									error('账号或密码错误')
+								}
+							}).catch(() => {
+								uni.hideLoading()
+								error('网络')
+							})
+						}
+					 	this.Countdown()
+						console.log("----------------------已经登录了")
+					}
+					else{
+						uni.showToast({
+							icon:"none",
+							title:'请先注册账号'
+						})
+						uni.navigateTo({
+							url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
+						})
+					}
+				},
 		},
+		
 		onLoad() {
-			
 			var that = this
 			var openid = uni.getStorageSync("openid")
 			console.log("------页面加载中，获取openid-------")
@@ -49,7 +99,8 @@
 											console.log("result =======" + result.data.data.account.openid)
 											uni.setStorageSync("openid", result.data.data.account.openid)
 											uni.setStorageSync("phone", result.data.data.account.name)
-											uni.setStorageSync("userAccountId", result.data.data.account.id);
+											uni.setStorageSync("accountID", result.data.data.account.id);
+											uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl)
 											console.log("openid =====:"+ result.data.data.account.openid)
 											console.log("phone =======" + uni.getStorageSync("phone"))
 											console.log("accountId =======" + uni.getStorageSync("userAccountId"))
@@ -68,20 +119,7 @@
 				});
 			}
 			
-			if(uni.getStorageSync("userAccountId")){
-				uni.setStorageSync("isAlreadyLogin", true)
-			 	this.Countdown()
-				console.log("----------------------已经登录了")
-			}
-			else{
-				uni.showToast({
-					icon:"none",
-					title:'请先注册账号'
-				})
-				uni.navigateTo({
-					url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
-				})
-			}
+			this.autologin()
 		}
 	}
 </script>

@@ -9,6 +9,10 @@
 			"style": {}
 		},
 		{
+		    "path" : "pages/login/login",
+		    "style" : {}
+		},
+		{
 		    "path" : "pages/getAvaturNik/getAvaturNik",
 		    "style" : {}
 		},
@@ -35,8 +39,6 @@
 			"path": "pages/home/appointmentHome/selectDepartment/selectDepartment",
 			"style": {}
 		}
-
-        
     ],
 	"subPackages": [{
 			"root": "pagesA",

@@ -1,7 +1,7 @@
 <template>
 	<view>
 	
-		<view class="input-inbox">
+<!-- 		<view class="input-inbox">
 			<input class="input" placeholder-class="placeholder-class" 
 			placeholder="请输入手机号码" v-model="name"/>
 		</view>
@@ -9,16 +9,11 @@
 			<input class="input" :password="!isVisible" v-model="password"
 			placeholder-class="placeholder-class" placeholder="请输入登录密码" />
 			<image class="eye-icon" :src="isVisible? '/static/login/eye.png':'/static/login/eye-off.png'" @click="changeVisible()"></image>
-		</view>
+		</view> -->
 	    <view>
 			<button class="button" @click="toPageCenter()">登录</button>
 		</view>
-		
-		<view class="enroll-changepassword-box" v-if="1">
-			<text class="left" @click="toRegister()" :class="visited == 1? 'visited-color' : ''">立即注册</text>
-			<text class="right" :class="visited == 2? 'visited-color' : ''" @click="toForgotPassword()">忘记密码</text>
-		</view>
-		<button   class="button" @click="getUserInfo()"> 使用微信登录</button>
+
 	</view>
 </template>
 
@@ -43,81 +38,16 @@
 			}
 		},
 		
-		onLoad(){
-			console.log("openid == " + uni.getStorageSync("openid"))
-		},
+		
 		methods: {
-			// 切换是否可见密码
-			changeVisible: function() {
-				this.isVisible = !this.isVisible
-			},
-			// 跳转到快速注册页面
-			toRegister: function() {
-				this.visited = 1
-				var _this = this
-				setTimeout(function() {
-					_this.visited = 0
-				}, 2000)
-				uni.navigateTo({
-					url: '/pagesB/pages/center/login/quickRegister/quickRegister'
-				})
-			},
-			// 跳转到忘记密码页面
-			toForgotPassword: function() {
-				this.visited = 2
-				var _this = this
-				setTimeout(function() {
-					_this.visited = 0
-				}, 2000)
-				uni.navigateTo({
-					url: '/pagesB/pages/center/login/fotgotPassword/fotgotPassword'
-				})
-			},
-			// 授权获取用户信息
-			getUserInfo: function() {
-				// var _this = this
-				uni.getUserProfile({
-					desc:"用于完善用户信息",  //必填，声明获取用户个人信息后的用途，不超过30个字符
-					success: (res) => {
-						console.log(res.userInfo.avatarUrl)
-						uni.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
-						uni.setStorageSync("nickName", res.userInfo.nickName)
-						if(uni.getStorageSync('phone')){
-							uni.setStorageSync("isAlreadyLogin", true)
-							uni.showToast({
-									icon:"none",
-									title:'登录成功'
-							}),
-							uni.switchTab({
-								url:'../../../../pages/center/center'
-							})
-						}
-						else{
-							uni.showToast({
-								icon:"none",
-								title:'mei'
-							})
-						}
-					},
-					fail: (err) => {
-						console.log(err)
-						uni.showToast({
-							icon:"none",
-							title:'用户拒绝获取'
-						})
-					}  
-				})
 			
-				// this.weChat()
-			
-			},
 			// 跳转到center页面
 			toPageCenter: function() {
-				// var name = uni.getStorageSync("phone")
-				// var password  = 'w123456789'
+			    let name = "15811111111"
+				let password  = "w123456789"
 				
-				var errorName = inputCheck('账号', 'string', this.name)
-				var errorPassword = inputCheck('密码', 'password', this.password)
+				var errorName = inputCheck('账号', 'string', name)
+				var errorPassword = inputCheck('密码', 'password', password)
 				if(errorName !== 'ok') {
 					error(errorName)
 				} else if(errorPassword !== 'ok') {
@@ -127,7 +57,7 @@
 						title: '加载中'
 					})
 					
-					userLogin(this.name, md5(this.password)).then(res => {
+					userLogin(name, md5(password)).then(res => {
 						if(res.data.code === 200) {
 							uni.setStorageSync('isAlreadyLogin', true);
 							console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
