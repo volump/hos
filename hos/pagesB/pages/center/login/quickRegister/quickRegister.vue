@@ -228,7 +228,6 @@
 					error('网络')
 				})
 				
-				
 			},
 			// 用于表单的判断
 			inputCheck:function(name, rule, value){

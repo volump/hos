@@ -154,7 +154,7 @@ var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 23
 //
 //
 //
-var _default = { data: function data() {return { codeNum: 0, phone: JSON.parse(uni.getStorageSync('userInfo')).phone, phoneNum: '' // 验证码
+var _default = { data: function data() {return { codeNum: 0, phone: JSON.parse(uni.getStorageSync('phone')), phoneNum: '' // 验证码
     };}, methods: { // 获取手机验证码
     getPhoneCode: function getPhoneCode() {this.codeNum = 60;var _this = this;var time = setInterval(function () {if (_this.codeNum == 0) {
           clearInterval(time);

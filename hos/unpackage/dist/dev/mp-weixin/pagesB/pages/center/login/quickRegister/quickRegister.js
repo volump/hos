@@ -360,7 +360,6 @@ var _default = { data: function data() {return { // 表单的数据
         (0, _errorTips.error)('网络');
       });
 
-
     },
     // 用于表单的判断
     inputCheck: function inputCheck(name, rule, value) {

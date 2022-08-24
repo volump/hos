@@ -12,6 +12,7 @@
 				<text class="left black-text">时间：</text>
 				<text class="right gray-text">{{ item.day | getDate }}/{{ item.time | getNoon}}</text>
 			</view>
+			
 			<view class="info-box">
 				<text class="left black-text">医生：</text>
 				<text class="right gray-text">{{ item.doctorName }}</text>
@@ -27,12 +28,8 @@
 </template>
 
 <script>
-	import {
-		getUserCardInfo
-	} from '@/common/api/userInfo.js'
-	import {
-		getTreatRecord
-	} from '@/common/api/outCall.js'
+	import { getUserCardInfo } from '@/common/api/userInfo.js'
+	import { getTreatRecord } from '@/common/api/outCall.js'
 	import {error} from '@/common/js/errorTips.js'
 	var _self = 1,
 		timer = null;

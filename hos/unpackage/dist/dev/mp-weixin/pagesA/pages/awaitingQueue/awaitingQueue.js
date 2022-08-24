@@ -179,28 +179,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _appoint = __webpack_require__(/*! @/common/api/appoint.js */ 61);
 var _userInfo = __webpack_require__(/*! @/common/api/userInfo.js */ 44);
 var _formDate = __webpack_require__(/*! @/common/js/formDate.js */ 62); //
@@ -251,36 +229,9 @@ var _formDate = __webpack_require__(/*! @/common/js/formDate.js */ 62); //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { isGetData: false, cardList: [], message: '候诊', // 此处为传递给没有数据页面的显示文字
-      isShowModal: false, modalVisited: 0, insureVisited: 0, awaitQueueList: [] };}, methods: { // 打开模态框
-    showModal: function showModal() {this.isShowModal = true;}, // 关闭模态框
-    hideModal: function hideModal() {this.isShowModal = false;this.modalVisited = this.insureVisited;}, // 点击弹出框的确定改变进入挂号的状态
-    changeCardId: function changeCardId(e) {this.insureVisited = this.modalVisited;this.isShowModal = false;this.getAwaitQueue();}, // 点击弹出框选择某个状态
-    selectCardId: function selectCardId(index) {this.modalVisited = index;}, // 获取就诊卡列表
-    getUserCardInfo: function getUserCardInfo() {var _this = this;uni.showLoading({ title: '加载中' });this.cardList = [];(0, _userInfo.getUserCardInfo)(uni.getStorageSync('accountID')).then(function (res) {if (res.data.code === 200) {_this.cardList = res.data.data;_this.modalVisited = _this.cardList[0].id;_this.insureVisited = _this.cardList[0].id;_this.getAwaitQueue();uni.hideLoading();}}).catch(function () {uni.hideLoading();error('获取就诊卡列表失败');});}, // 获取排队队列
-    getAwaitQueue: function getAwaitQueue() {var _this2 = this;this.awaitQueueList = [];uni.showLoading({ title: '加载中' });(0, _appoint.getAwaitQueue)(uni.getStorageSync('cardID'), uni.getStorageSync('accountID'), (0, _formDate.formDate)(new Date(), 'YYYY-MM-DD')).then(function (res) {if (res.data.code === 200) {if (res.data.data.list.length > 0) {_this2.isGetData = true;_this2.awaitQueueList = res.data.data.list;} else {_this2.isGetData = false;}}uni.hideLoading();}).catch(function () {uni.hideLoading();error('获取排队列表失败');});} }, onLoad: function onLoad() {this.getAwaitQueue();} };exports.default = _default;
+var _default = { data: function data() {return { isGetData: false, message: '候诊', // 此处为传递给没有数据页面的显示文字
+      awaitQueueList: [] };}, methods: { // 获取排队队列
+    getAwaitQueue: function getAwaitQueue() {var _this = this;this.awaitQueueList = [];uni.showLoading({ title: '加载中' });(0, _appoint.getAwaitQueue)(uni.getStorageSync('cardID'), uni.getStorageSync('accountID'), (0, _formDate.formDate)(new Date(), 'YYYY-MM-DD')).then(function (res) {if (res.data.code === 200) {if (res.data.data.list.length > 0) {_this.isGetData = true;_this.awaitQueueList = res.data.data.list;} else {_this.isGetData = false;}}uni.hideLoading();}).catch(function () {uni.hideLoading();error('获取排队列表失败');});} }, onLoad: function onLoad() {this.getAwaitQueue();} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

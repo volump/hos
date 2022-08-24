@@ -181,12 +181,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _userInfo = __webpack_require__(/*! @/common/api/userInfo.js */ 44);
-
-
 var _outCall = __webpack_require__(/*! @/common/api/outCall.js */ 87);
-
-
 var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 43); //
 //
 //
@@ -215,9 +212,9 @@ var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 43); //
 //
 //
 //
+//
 var _self = 1,timer = null;var _default = { data: function data() {return { treatRecordList: [], cardList: [], TabCur: 0, scrollLeft: 0, loadingText: '加载中...', page: 1 };}, // 到达底部时会自动获取新数据
-  onReachBottom: function onReachBottom() {var _self = this;if (timer != null) {clearTimeout(timer);}timer = setTimeout(function () {if (_self.loadingText != '已加载全部') {_self.getTreatRecord();}}, 1000);}, methods: { tabSelect: function tabSelect(e) {
-      this.TabCur = e.currentTarget.dataset.id;
+  onReachBottom: function onReachBottom() {var _self = this;if (timer != null) {clearTimeout(timer);}timer = setTimeout(function () {if (_self.loadingText != '已加载全部') {_self.getTreatRecord();}}, 1000);}, methods: { tabSelect: function tabSelect(e) {this.TabCur = e.currentTarget.dataset.id;
       this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
       this.page = 1;
       this.getTreatRecord();

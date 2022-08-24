@@ -20,7 +20,7 @@
 		data() {
 			return {
 				codeNum: 0,
-				phone: JSON.parse(uni.getStorageSync('userInfo')).phone,
+				phone: JSON.parse(uni.getStorageSync('phone')),
 				phoneNum: '', // 验证码
 			}
 		},

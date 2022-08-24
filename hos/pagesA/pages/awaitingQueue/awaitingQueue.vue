@@ -43,28 +43,6 @@
 		<!-- 当没有数据或者当前还没到预约的就诊时间时显示没有候诊详情 -->
 		<noDataPage :message='message' v-if="!isGetData"></noDataPage>
 		
-		<!-- 底部点击跳出弹出框的按钮 -->
-		<!-- <image class="icon-up-position" src="/static/appointment/icon-up.png" @click="showModal()"></image> -->
-		<!-- 从底部弹出选择 -->
-		<!-- <view class="cu-modal bottom-modal" :class="isShowModal?'show':''">
-			<view class="cu-dialog">
-				<view class="cu-bar bg-white">
-					<view class="action text-green" @click="changeCardId()">确定</view>
-					<view class="action text-blue" @tap="hideModal()">取消</view>
-				</view>
-				<view class="bottom-hospital-box">
-					<view class="hospital-box" v-for="(item,index) in cardList" :key="item.id">
-						<view class="hospital" :class="modalVisited == item.id?
-						 'visited-background':'invisited-background'" @click="selectCardId(item.id)">
-							<text class="text">
-								{{ item.name }}
-							</text>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view> -->
-		<!-- 弹出框结束 -->
 	</view>
 </template>
 
@@ -76,53 +54,12 @@
 		data() {
 			return {
 				isGetData: false,
-				cardList: [],
 				message: '候诊', // 此处为传递给没有数据页面的显示文字
-				isShowModal: false,
-				modalVisited: 0,
-				insureVisited: 0,
 				awaitQueueList: []
 			}
 		},
 		methods: {
-			// 打开模态框
-			showModal: function() {
-				this.isShowModal = true
-			},
-			// 关闭模态框
-			hideModal: function() {
-				this.isShowModal = false
-				this.modalVisited = this.insureVisited
-			},
-			// 点击弹出框的确定改变进入挂号的状态
-			changeCardId:function(e){
-				this.insureVisited = this.modalVisited
-				this.isShowModal = false
-				this.getAwaitQueue()
-			},
-			// 点击弹出框选择某个状态
-			selectCardId:function(index) {
-				this.modalVisited = index
-			},
-			// 获取就诊卡列表
-			getUserCardInfo: function() {
-				uni.showLoading({
-					title: '加载中'
-				})
-				this.cardList = []
-				getUserCardInfo(uni.getStorageSync('accountID')).then(res => {
-					if (res.data.code === 200) {
-						this.cardList = res.data.data
-						this.modalVisited = this.cardList[0].id
-						this.insureVisited = this.cardList[0].id
-						this.getAwaitQueue();
-						uni.hideLoading()
-					}
-				}).catch(() => {
-					uni.hideLoading()
-					error('获取就诊卡列表失败')
-				})
-			},
+			
 			// 获取排队队列
 			getAwaitQueue: function() {
 				this.awaitQueueList = [];
@@ -139,6 +76,7 @@
 							this.isGetData = false;
 						}
 					}
+					
 					uni.hideLoading()
 				}).catch(() => {
 					uni.hideLoading()

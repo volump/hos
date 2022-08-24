@@ -223,11 +223,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
 var _appoint = __webpack_require__(/*! @/common/api/appoint.js */ 61);
 var _userInfo = __webpack_require__(/*! @/common/api/userInfo.js */ 44);
 var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 43); //
@@ -287,35 +282,12 @@ var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 43); //
 //
 //
 //
-//
-//
-//
-//
-//
 var _self = 1,timer = null;var _default = { data: function data() {return { appointRecordList: [], // 挂号记录列表
       cardList: [], // 就诊卡列表
-      loadingText: '加载中...', page: 1, TabCur: 0, scrollLeft: 0 };}, // 到达底部时会自动获取新数据
-  onReachBottom: function onReachBottom() {this.loadingText = '加载中';var _self = this;if (timer != null) {clearTimeout(timer);}timer = setTimeout(function () {if (_self.loadingText != '已加载全部') {_self.getAllAppointRecord();}}, 1000);}, methods: { tabSelect: function tabSelect(e) {this.TabCur = e.currentTarget.dataset.id;this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;this.page = 1;this.getAllAppointRecord();}, // 点击取消预约按钮
-    cancelAppoint: function cancelAppoint(id) {var that = this;console.log(id);uni.showModal({ title: '提示', content: '是否取消该次预约，将视为一次失信', success: function success(res) {if (res.confirm) {(0, _appoint.cancelAppoint)(id).then(function (res) {if (res.data.code === 200) {uni.showToast({ title: '取消挂号成功' });that.getAllAppointRecord();}});}} });}, // 获取就诊卡列表
-    // getUserCardInfo: function() {
-    // 	uni.showLoading({
-    // 		title: '加载中'
-    // 	})
-    // 	this.cardList = []
-    // 	getUserCardInfo(uni.getStorageSync('accountID')).then(res => {
-    // 		if (res.data.code === 200) {
-    // 			this.cardList = res.data.data
-    // 			this.TabCur = this.cardList[0].id
-    // 			this.getAllAppointRecord()
-    // 		}
-    // 	}).catch(() => {
-    // 		uni.hideLoading()
-    // 		error('获取就诊卡列表失败')
-    // 	})
-    // },
-    // 获取全部挂号记录
-    getAllAppointRecord: function getAllAppointRecord() {var _this = this;var that = this;uni.showLoading({ title: '加载中' });(0, _appoint.getAllAppointRecord)(uni.getStorageSync("cardID"), uni.getStorageSync("accountID"), this.page, 3).then(function (res) {if (res.data.code === 200) {var data = res.data.data;that.total = data.total;if (data.list !== null) {if (that.page === 1) {that.appointRecordList = data.list;
-              that.page++;
+      loadingText: '加载中...', page: 1 };}, // 到达底部时会自动获取新数据
+  onReachBottom: function onReachBottom() {this.loadingText = '加载中';var _self = this;if (timer != null) {clearTimeout(timer);}timer = setTimeout(function () {if (_self.loadingText != '已加载全部') {_self.getAllAppointRecord();}}, 1000);}, methods: { // 点击取消预约按钮
+    cancelAppoint: function cancelAppoint(id) {var that = this;console.log(id);uni.showModal({ title: '提示', content: '是否取消该次预约，将视为一次失信', success: function success(res) {if (res.confirm) {(0, _appoint.cancelAppoint)(id).then(function (res) {if (res.data.code === 200) {uni.showToast({ title: '取消挂号成功' });that.getAllAppointRecord();}});}} });}, // 获取全部挂号记录
+    getAllAppointRecord: function getAllAppointRecord() {var _this = this;var that = this;uni.showLoading({ title: '加载中' });(0, _appoint.getAllAppointRecord)(uni.getStorageSync("cardID"), uni.getStorageSync("accountID"), this.page, 3).then(function (res) {if (res.data.code === 200) {var data = res.data.data;that.total = data.total;if (data.list !== null) {if (that.page === 1) {that.appointRecordList = data.list;that.page++;
             } else {
               that.appointRecordList = that.appointRecordList.concat(data.list);
               that.page++;

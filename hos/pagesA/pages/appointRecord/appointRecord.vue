@@ -1,10 +1,5 @@
 <template>
 	<view class="page-backgroud">
-		<!-- <scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
-			<view class="cu-item" :class="item.id==TabCur?'text-green cur':''" v-for="(item,index) in cardList" :key="item.id" @tap="tabSelect" :data-id="item.id">
-				{{item.name}}
-			</view>
-		</scroll-view> -->
 		<view class="appoint-record-box" v-for="(item, index) in appointRecordList" :key="item.appointmentId">
 			<view class="top-title">
 				<!-- <text>{{item.appointmentId}}</text> -->
@@ -72,8 +67,6 @@
 				cardList: [], // 就诊卡列表
 				loadingText: '加载中...',
 				page: 1,
-				TabCur: 0,
-				scrollLeft: 0
 			}
 		},
 		// 到达底部时会自动获取新数据
@@ -90,12 +83,7 @@
 			}, 1000);
 		},
 		methods: {
-			tabSelect(e) {
-				this.TabCur = e.currentTarget.dataset.id;
-				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
-				this.page = 1;
-				this.getAllAppointRecord();
-			},
+			
 			// 点击取消预约按钮
 			cancelAppoint: function(id) {
 				let that = this;
@@ -117,23 +105,7 @@
 					}
 				})
 			},
-			// 获取就诊卡列表
-			// getUserCardInfo: function() {
-			// 	uni.showLoading({
-			// 		title: '加载中'
-			// 	})
-			// 	this.cardList = []
-			// 	getUserCardInfo(uni.getStorageSync('accountID')).then(res => {
-			// 		if (res.data.code === 200) {
-			// 			this.cardList = res.data.data
-			// 			this.TabCur = this.cardList[0].id
-			// 			this.getAllAppointRecord()
-			// 		}
-			// 	}).catch(() => {
-			// 		uni.hideLoading()
-			// 		error('获取就诊卡列表失败')
-			// 	})
-			// },
+			
 			// 获取全部挂号记录
 			getAllAppointRecord: function() {
 				let that = this;
