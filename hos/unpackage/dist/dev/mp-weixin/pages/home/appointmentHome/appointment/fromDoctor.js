@@ -150,24 +150,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _doctor = __webpack_require__(/*! @/common/api/doctor.js */ 162);
 var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 43); //
 //
@@ -204,27 +186,27 @@ var _errorTips = __webpack_require__(/*! @/common/js/errorTips.js */ 43); //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { inputVal: "", isActived: 0, iconURL: '/static/appointment/', doctorRecordList: [{ id: 1, name: '杨XX' }, { id: 2, name: '杨XX' }, { id: 3, name: '杨XX' }, { id: 4, name: '杨XX' }, { id: 5, name: '杨XX' }, { id: 6, name: '杨XX' }, { id: 7, name: '杨XX' }, { id: 8, name: '杨XX' }, { id: 9, name: '杨XX' }], doctorList: [] };}, methods: { // 清除输入框的东西
-    clearInput: function clearInput() {this.inputVal = '';}, // 获取医生信息
-    getDoctorList: function getDoctorList() {var _this = this;this.doctorList = [];uni.showLoading({ title: '加载中' });(0, _doctor.getDcotorByName)(1, 50, this.inputVal.trim()).then(function (res) {if (res.data.code === 200) {var data = res.data.data.list;if (data.length > 0) {_this.doctorList = data;uni.hideLoading();
+var _default = { data: function data() {return { inputVal: "", isActived: 0, iconURL: '/static/appointment/', doctorRecordList: [{ id: 1, name: '杨XX' }, { id: 2, name: '杨XX' }, { id: 3, name: '杨XX' }, { id: 4, name: '杨XX' }, { id: 5, name: '杨XX' }, { id: 6, name: '杨XX' }, { id: 7, name: '杨XX' }, { id: 8, name: '杨XX' }, { id: 9, name: '杨XX' }],
+      doctorList: [] };
+
+  },
+  methods: {
+    // 清除输入框的东西
+    clearInput: function clearInput() {
+      this.inputVal = '';
+    },
+    // 获取医生信息
+    getDoctorList: function getDoctorList() {var _this = this;
+      this.doctorList = [];
+      uni.showLoading({
+        title: '加载中' });
+
+      (0, _doctor.getDcotorByName)(1, 50, this.inputVal.trim()).then(function (res) {
+        if (res.data.code === 200) {
+          var data = res.data.data.list;
+          if (data.length > 0) {
+            _this.doctorList = data;
+            uni.hideLoading();
           } else {
             uni.hideLoading();
             (0, _errorTips.error)('没有该医生信息，请确认医生姓名');

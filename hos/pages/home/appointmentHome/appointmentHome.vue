@@ -18,12 +18,10 @@
 							<image src="../../../static/appointment/hospital/hospital3.jpg" class="swiper-item"></image>
 						</swiper-item>
 		</swiper>
-		
 		<from-hosipital v-if="insureVisited == 0"></from-hosipital>
 		<from-doctor v-if="insureVisited == 1"></from-doctor>
 		<from-date v-if="insureVisited == 2"></from-date>
 		<from-department v-if="insureVisited == 3"></from-department>
-		<!-- <department v-if="insureVisited == 3" :allData="allData"></department> -->
 		
 		<!-- 底部点击跳出弹出框的按钮 -->
 		<image class="icon-up-position" src="/static/appointment/icon-up.png" @click="showModal()"></image>

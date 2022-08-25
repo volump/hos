@@ -14,24 +14,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- <view class="weui-cells searchbar-result" v-if="inputVal.length > 0">
-			<navigator url="" class="weui-cell" hover-class="weui-cell_active">
-				<view class="weui-cell__bd">
-					<view>实时搜索文本</view>
-				</view>
-			</navigator>
-		</view> -->
-		
-		<!-- <view class="blue-column-border-box" style="margin-top: 15rpx;">
-			<view class="blue-border"></view>
-			<view class="blue-text">最近三个月的挂号医生</view>
-		</view>
-		<view class="record-box">
-			<view class="doctor-box" v-for="(item,index) in doctorRecordList" :key='item.id'>
-				<text class="doctor" :data-name='item.id' @click="changeDoctor"
-				:class="isActived == item.id?'doctor-blue-background':''">杨XX</text>
-			</view>
-		</view> -->
 		
 		<!-- 医生列表 -->
 		<view class="doctor-outbox" style="margin-top: 60rpx;"
