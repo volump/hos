@@ -9163,7 +9163,7 @@ function removeToken() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.tokenRefresh = tokenRefresh;exports.getPhoneCode = getPhoneCode;exports.validataCode = validataCode;exports.userRegister = userRegister;exports.userLogin = userLogin;
+Object.defineProperty(exports, "__esModule", { value: true });exports.tokenRefresh = tokenRefresh;exports.getPhoneCode = getPhoneCode;exports.validataCode = validataCode;exports.userRegister = userRegister;exports.userLogin = userLogin;exports.userLoginByopenid = userLoginByopenid;
 var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 用于注册时的api接口页面
 
 /**
@@ -9210,6 +9210,15 @@ function userLogin(name, password) {
   console.log("进入登录入口++++++++++++++");
   return (0, _unloginRequest.default)({
     url: '/power/account/login?name=' + name + '&password=' + password,
+    method: 'get' });
+
+}
+
+// 5 openid登录
+function userLoginByopenid(name) {
+  console.log("---------使用openid登录++++++++++++++");
+  return (0, _unloginRequest.default)({
+    url: '/power/account/loginByopenid?name=' + name,
     method: 'get' });
 
 }

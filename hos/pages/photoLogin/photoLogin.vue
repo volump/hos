@@ -10,6 +10,7 @@
 	import md5 from 'js-md5';
 	import { setToken, getToken } from '@/common/utils/auth.js'
 	import { userLogin } from '@/common/api/quickRegister.js';
+	import { userLoginByopenid } from '@/common/api/quickRegister.js';
 	import  { inputCheck } from '@/common/js/inputCheck.js';
 	export default {
 		
@@ -42,9 +43,11 @@
 							uni.showLoading({
 								title: '加载中'
 							})
-							userLogin(name, md5(password)).then(res => {
+							
+							userLoginByopenid(name).then(res => {
 								if(res.data.code === 200) {
 									uni.setStorageSync('isAlreadyLogin', true);
+									console.log("loginByopenid === ==== ")
 									console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
 									setToken(res.data.data)
 									console.log("token ====="+getToken())

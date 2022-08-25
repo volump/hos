@@ -49,3 +49,12 @@ export function tokenRefresh(token) {
 	 })
  }
  
+ // 5 openid登录
+ export function userLoginByopenid(name) {
+ 	 console.log("---------使用openid登录++++++++++++++")
+ 	 return unloginRegister({
+ 		 url: '/power/account/loginByopenid?name=' + name,
+ 		 method: 'get'
+ 	 })
+ }
+ 

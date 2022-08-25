@@ -148,6 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 var _jsMd = _interopRequireDefault(__webpack_require__(/*! js-md5 */ 18));
 var _auth = __webpack_require__(/*! @/common/utils/auth.js */ 22);
 var _quickRegister = __webpack_require__(/*! @/common/api/quickRegister.js */ 23);
+
 var _inputCheck = __webpack_require__(/*! @/common/js/inputCheck.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -180,9 +181,11 @@ var _default = { data: function data() {return {};}, methods: {
           uni.showLoading({
             title: '加载中' });
 
-          (0, _quickRegister.userLogin)(name, (0, _jsMd.default)(password)).then(function (res) {
+
+          (0, _quickRegister.userLoginByopenid)(name).then(function (res) {
             if (res.data.code === 200) {
               uni.setStorageSync('isAlreadyLogin', true);
+              console.log("loginByopenid === ==== ");
               console.log("从登录页进入+++++++res.data.data===" + res.data.data);
               (0, _auth.setToken)(res.data.data);
               console.log("token =====" + (0, _auth.getToken)());
