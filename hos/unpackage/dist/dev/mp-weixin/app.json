@@ -70,5 +70,6 @@
   "usingComponents": {
     "cu-custom": "/common/style/colorui/components/cu-custom",
     "no-data-page": "/component/noDataPage"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

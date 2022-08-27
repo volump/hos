@@ -17,7 +17,7 @@
 		
 		data() {
 			return {
-				
+			
 			}
 		},
 		methods: {
@@ -34,7 +34,7 @@
 					console.log("accountId =====:"+ uni.getStorageSync('accountID'))
 					if(uni.getStorageSync("accountID")){
 						let name = "15811111111"
-						let password  = "w123456789"
+						let password  = "w123456"
 						var errorName = inputCheck('账号', 'string', name)
 						var errorPassword = inputCheck('密码', 'password', password)
 						if(errorName !== 'ok') {
@@ -45,7 +45,6 @@
 							uni.showLoading({
 								title: '加载中'
 							})
-							
 							userLoginByopenid(name).then(res => {
 								if(res.data.code === 200) {
 									uni.setStorageSync('isAlreadyLogin', true);
@@ -74,6 +73,39 @@
 							url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
 						})
 					}
+				},
+				getOpenId0: function(){
+					uni.login({
+						provider: 'weixin',
+						success: function(res) {
+							try {
+								var code = res.code
+								console.log("getopenid00000000000======" + res.code)
+								uni.getUserInfo({
+									provider: 'weixin',
+									success: function(infoRes) {
+								
+										let url = 'http://localhost:8080/hospital/user/wx2?code='+code;
+										uni.request({
+											url: url, // 请求路径
+											success: result => {
+												console.log("-----------1---------")
+												console.log("openid0000000000 =======" + result.data.data)
+												uni.setStorageSync("openid", result.data.data)
+									
+											},
+											fail(ex) {
+												console.log(ex.message)
+											}
+										})
+									}
+								});
+										 
+							} catch (ex) {
+								console.log(ex.message)
+							}
+						}
+					});
 				},
 				getOpenId: function(){
 					var that = this
@@ -125,9 +157,12 @@
 		},
 		
 		onLoad() {
+			
+			// this.getOpenId()
+			// this.autologin()
+			this.getOpenId0()
 			this.getOpenId()
 			this.autologin()
-			
 		}
 	}
 </script>

@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _department = __webpack_require__(/*! @/common/api/department.js */ 55);var department = function department() {Promise.all(/*! require.ensure | pages/home/appointmentHome/appointment/department */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/home/appointmentHome/appointment/department")]).then((function () {return resolve(__webpack_require__(/*! ../appointment/department.vue */ 234));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _department = __webpack_require__(/*! @/common/api/department.js */ 55);var department = function department() {Promise.all(/*! require.ensure | pages/home/appointmentHome/appointment/department */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/home/appointmentHome/appointment/department")]).then((function () {return resolve(__webpack_require__(/*! ../appointment/department.vue */ 239));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   components: {

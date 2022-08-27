@@ -18,7 +18,7 @@
 			<text class="left" @click="toRegister()" :class="visited == 1? 'visited-color' : ''">立即注册</text>
 			<text class="right" :class="visited == 2? 'visited-color' : ''" @click="toForgotPassword()">忘记密码</text>
 		</view>
-		<button   class="button" @click="getUserInfo()"> 使用微信登录</button>
+		<!-- <button   class="button" @click="getUserInfo()"> 使用微信登录</button> -->
 	</view>
 </template>
 

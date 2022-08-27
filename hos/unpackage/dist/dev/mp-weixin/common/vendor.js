@@ -760,7 +760,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8276,7 +8276,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8297,14 +8297,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8389,7 +8389,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9225,40 +9225,6 @@ function userLoginByopenid(name) {
 
 /***/ }),
 
-/***/ 239:
-/*!*************************************************************************************!*\
-  !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/outpatient.js ***!
-  \*************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getOutpatientByHospital = getOutpatientByHospital;exports.getOutpatientListById = getOutpatientListById;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 46));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-/**
-                                                                                                                                                                                         * 用于所有的门诊的Api接口
-                                                                                                                                                                                         * 1 获取某个医院某个专科的门诊信息
-                                                                                                                                                                                         * 2 分页获取专科编号下的门诊列表信息
-                                                                                                                                                                                         * **/
-// 1 获取某个医院某个专科的门诊信息
-function getOutpatientByHospital(hospitalId, specialId, pageNum, pageSize) {
-  return (0, _unloginRequest.default)({
-    url: '/hospital/outpatient/list?hospitalId=' + hospitalId + '&specialId=' +
-    specialId + '&pageNum=' + pageNum + '&pageSize=' + pageSize,
-    method: 'get' });
-
-}
-// 2 分页获取专科编号下的门诊列表信息
-function getOutpatientListById(pageNum, pageSize, specialId) {
-  return (0, _unloginRequest.default)({
-    url: '/hospital/special/list/outpatient?pageNum=' + pageNum + '&pageSize=' +
-    pageSize + '&specialId=' + specialId,
-    method: 'get' });
-
-}
-
-/***/ }),
-
 /***/ 24:
 /*!*******************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/utils/unloginRequest.js ***!
@@ -9303,6 +9269,40 @@ function _default(data, url, method) {
   return unloginRegister(data, url, method);
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 244:
+/*!*************************************************************************************!*\
+  !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/outpatient.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getOutpatientByHospital = getOutpatientByHospital;exports.getOutpatientListById = getOutpatientListById;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 46));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/**
+                                                                                                                                                                                         * 用于所有的门诊的Api接口
+                                                                                                                                                                                         * 1 获取某个医院某个专科的门诊信息
+                                                                                                                                                                                         * 2 分页获取专科编号下的门诊列表信息
+                                                                                                                                                                                         * **/
+// 1 获取某个医院某个专科的门诊信息
+function getOutpatientByHospital(hospitalId, specialId, pageNum, pageSize) {
+  return (0, _unloginRequest.default)({
+    url: '/hospital/outpatient/list?hospitalId=' + hospitalId + '&specialId=' +
+    specialId + '&pageNum=' + pageNum + '&pageSize=' + pageSize,
+    method: 'get' });
+
+}
+// 2 分页获取专科编号下的门诊列表信息
+function getOutpatientListById(pageNum, pageSize, specialId) {
+  return (0, _unloginRequest.default)({
+    url: '/hospital/special/list/outpatient?pageNum=' + pageNum + '&pageSize=' +
+    pageSize + '&specialId=' + specialId,
+    method: 'get' });
+
+}
 
 /***/ }),
 
@@ -9415,36 +9415,6 @@ function checkGender(identify) {
 
 /***/ }),
 
-/***/ 268:
-/*!***********************************************************************************!*\
-  !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/password.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getPasswordCode = getPasswordCode;exports.updatePassword = updatePassword;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 46));
-var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-// 6 修改密码的短信验证
-function getPasswordCode(phone) {
-  console.log('test');
-  return (0, _unloginRequest.default)({
-    url: '/user/basic/password/message?phone=' + phone,
-    method: 'get' });
-
-}
-// 7 用户修改密码
-function updatePassword(data) {
-  return (0, _unloginRequest.default)({
-    url: '/user/basic/password',
-    method: 'put',
-    data: data });
-
-}
-
-/***/ }),
-
 /***/ 27:
 /*!***************************************************************************************!*\
   !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/js/authorization.js ***!
@@ -9534,6 +9504,36 @@ function getOpenId() {
   }
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 273:
+/*!***********************************************************************************!*\
+  !*** E:/ComprehensiveStrian/hospital-uniapp/hospital2/hos/common/api/password.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getPasswordCode = getPasswordCode;exports.updatePassword = updatePassword;var _request = _interopRequireDefault(__webpack_require__(/*! @/common/utils/request.js */ 46));
+var _unloginRequest = _interopRequireDefault(__webpack_require__(/*! @/common/utils/unloginRequest.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// 6 修改密码的短信验证
+function getPasswordCode(phone) {
+  console.log('test');
+  return (0, _unloginRequest.default)({
+    url: '/user/basic/password/message?phone=' + phone,
+    method: 'get' });
+
+}
+// 7 用户修改密码
+function updatePassword(data) {
+  return (0, _unloginRequest.default)({
+    url: '/user/basic/password',
+    method: 'put',
+    data: data });
+
+}
 
 /***/ }),
 

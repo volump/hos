@@ -13,14 +13,15 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 var _filters = _interopRequireDefault(__webpack_require__(/*! @/common/js/filters.js */ 11));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 for (var item in _filters.default) {
   _vue.default.filter(item, _filters.default[item]);
-}var cuCustom = function cuCustom() {__webpack_require__.e(/*! require.ensure | common/style/colorui/components/cu-custom */ "common/style/colorui/components/cu-custom").then((function () {return resolve(__webpack_require__(/*! ./common/style/colorui/components/cu-custom.vue */ 326));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+}var cuCustom = function cuCustom() {__webpack_require__.e(/*! require.ensure | common/style/colorui/components/cu-custom */ "common/style/colorui/components/cu-custom").then((function () {return resolve(__webpack_require__(/*! ./common/style/colorui/components/cu-custom.vue */ 206));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 _vue.default.component('cu-custom', cuCustom);
 
-_vue.default.config.productionTip = false;var noDataPage = function noDataPage() {__webpack_require__.e(/*! require.ensure | component/noDataPage */ "component/noDataPage").then((function () {return resolve(__webpack_require__(/*! @/component/noDataPage.vue */ 206));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+_vue.default.config.productionTip = false;var noDataPage = function noDataPage() {__webpack_require__.e(/*! require.ensure | component/noDataPage */ "component/noDataPage").then((function () {return resolve(__webpack_require__(/*! @/component/noDataPage.vue */ 211));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 _vue.default.component('noDataPage', noDataPage);
+
 
 _App.default.mpType = 'app';
 
@@ -97,17 +98,59 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 {
-  onLaunch: function onLaunch() {
-    console.log('App Launch');
+  // onLaunch: function() {
+  // 	console.log('App Launch')
+  // },
+  //app.vue生命周期中，onlaunch执行时，执行this.$isResolve()
+  onLaunch: function onLaunch() {var _this = this;
+    //发送请求
+    uni.request({
+      success: function success(loginRes) {
+        uni.login({
+          provider: 'weixin',
+          success: function success(res) {
+            try {
+              var code = res.code;
+              console.log("res======" + res.code);
+              uni.getUserInfo({
+                provider: 'weixin',
+                success: function success(infoRes) {
+
+                  var url = 'http://localhost:8080/hospital/user/wx2?code=' + code;
+                  uni.request({
+                    url: url, // 请求路径
+                    success: function success(result) {
+                      console.log("-----------1---------");
+                      console.log("openid =======" + result.data.data);
+                      uni.setStorageSync("openid", result.data.data);
+
+                    },
+                    fail: function fail(ex) {
+                      console.log(ex.message);
+                    } });
+
+                } });
+
+
+            } catch (ex) {
+              console.log(ex.message);
+            }
+          } });
+
+        _this.$isResolve();
+      } });
+
   },
+
   onShow: function onShow() {
     console.log('App Show');
   },
   onHide: function onHide() {
     console.log('App Hide');
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 8 */

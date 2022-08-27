@@ -172,7 +172,7 @@ var _default = { data: function data() {return {};}, methods: {
       console.log("accountId =====:" + uni.getStorageSync('accountID'));
       if (uni.getStorageSync("accountID")) {
         var name = "15811111111";
-        var password = "w123456789";
+        var password = "w123456";
         var errorName = (0, _inputCheck.inputCheck)('账号', 'string', name);
         var errorPassword = (0, _inputCheck.inputCheck)('密码', 'password', password);
         if (errorName !== 'ok') {
@@ -182,7 +182,6 @@ var _default = { data: function data() {return {};}, methods: {
         } else {
           uni.showLoading({
             title: '加载中' });
-
 
           (0, _quickRegister.userLoginByopenid)(name).then(function (res) {
             if (res.data.code === 200) {
@@ -212,6 +211,39 @@ var _default = { data: function data() {return {};}, methods: {
           url: '../../pagesB/pages/center/login/quickRegister/quickRegister' });
 
       }
+    },
+    getOpenId0: function getOpenId0() {
+      uni.login({
+        provider: 'weixin',
+        success: function success(res) {
+          try {
+            var code = res.code;
+            console.log("getopenid00000000000======" + res.code);
+            uni.getUserInfo({
+              provider: 'weixin',
+              success: function success(infoRes) {
+
+                var url = 'http://localhost:8080/hospital/user/wx2?code=' + code;
+                uni.request({
+                  url: url, // 请求路径
+                  success: function success(result) {
+                    console.log("-----------1---------");
+                    console.log("openid0000000000 =======" + result.data.data);
+                    uni.setStorageSync("openid", result.data.data);
+
+                  },
+                  fail: function fail(ex) {
+                    console.log(ex.message);
+                  } });
+
+              } });
+
+
+          } catch (ex) {
+            console.log(ex.message);
+          }
+        } });
+
     },
     getOpenId: function getOpenId() {
       var that = this;
@@ -263,9 +295,12 @@ var _default = { data: function data() {return {};}, methods: {
 
 
   onLoad: function onLoad() {
+
+    // this.getOpenId()
+    // this.autologin()
+    this.getOpenId0();
     this.getOpenId();
     this.autologin();
-
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
