@@ -151,60 +151,6 @@
 					})
 				}
 			},
-
-			
-			// // 微信小程序的授权
-			// weChat: function() {
-			// 	uni.showLoading({
-			// 		title: '加载中'
-			// 	})
-			// 	console.log("小程序授权--------------")
-			// 	uni.getUserProfile({
-			// 		desc:"用于完善用户信息",  //必填，声明获取用户个人信息后的用途，不超过30个字符
-			// 		success: (res) => {
-			// 			console.log(res.userInfo.avatarUrl)
-			// 			uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
-			// 			uni.setStorageSync("isAuthrization", true)
-			// 			console.log(res.userInfo.avatarUrl+"---123456")
-			// 			uni.showToast({
-			// 				icon:"none",
-			// 				title:'获取成功'
-			// 			})
-			// 			uni.navigateTo({
-			// 				url:"../../../../pages/center/center"
-			// 			})
-			// 		},
-			// 		fail: (err) => {
-			// 			console.log(err)
-			// 			uni.showToast({
-			// 				icon:"none",
-			// 				title:'用户拒绝获取'
-			// 			})
-			// 		}  
-			// 	})
-			// 	// let _this = this
-			// 	// wx.getSetting({
-			// 	// 	success(res) {
-			// 	// 		if (res.authSetting['scope.userInfo']) {
-			// 	// 			// 已经授权，可以直接调用 getUserInfo 获取头像昵称
-			// 	// 			wx.getUserInfo({
-			// 	// 				success: function(res) {
-			// 	// 					uni.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
-			// 	// 					uni.setStorageSync("isAuthrization", true)
-			// 	// 					_this.isAuthrization = true
-			// 	// 					try {} catch (e) {}
-			// 	// 					uni.hideLoading()
-			// 	// 					return true
-			// 	// 				},
-			// 	// 				fail: () => {
-			// 	// 					uni.hideLoading()
-			// 	// 					return false
-			// 	// 				}
-			// 	// 			})
-			// 	// 		}
-			// 	// 	}
-			// 	// })
-			// },
 		}
 	}
 </script>

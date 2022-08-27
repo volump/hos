@@ -11,7 +11,8 @@
 	import { setToken, getToken } from '@/common/utils/auth.js'
 	import { userLogin } from '@/common/api/quickRegister.js';
 	import { userLoginByopenid } from '@/common/api/quickRegister.js';
-	import  { inputCheck } from '@/common/js/inputCheck.js';
+	import { inputCheck } from '@/common/js/inputCheck.js';
+	import { getOpenId } from '@/common/js/authorization.js'
 	export default {
 		
 		data() {
@@ -29,6 +30,7 @@
 				},
 				autologin: function() {
 					console.log("openid =====:"+ uni.getStorageSync('openid'))
+					console.log("------2---------")
 					console.log("accountId =====:"+ uni.getStorageSync('accountID'))
 					if(uni.getStorageSync("accountID")){
 						let name = "15811111111"
@@ -51,7 +53,6 @@
 									console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
 									setToken(res.data.data)
 									console.log("token ====="+getToken())
-									
 								} else {
 									uni.hideLoading()
 									error('账号或密码错误')
@@ -74,54 +75,59 @@
 						})
 					}
 				},
+				getOpenId: function(){
+					var that = this
+					var openid = uni.getStorageSync("openid")
+					console.log("------页面加载中，获取openid-------")
+					if (!openid) {
+						uni.login({
+							provider: 'weixin',
+							success: function(res) {
+								try {
+									var code = res.code
+									
+									console.log("res======" + res.code)
+									uni.getUserInfo({
+										provider: 'weixin',
+										success: function(infoRes) {
+											console.log("infoRes===" + infoRes.userInfo.nickName)
+											// var  nickName = infoRes.userInfo.nickName
+											// var  avatarUrl = infoRes.userInfo.avatarUrl
+											let url = 'http://localhost:8080/hospital/user/wx?code='+code;
+											uni.request({
+												url: url, // 请求路径
+												success: result => {
+													console.log("-----------1---------")
+													console.log("result =======" + result.data.data)
+													console.log("result =======" + result.data.data.account.openid)
+													uni.setStorageSync("openid", result.data.data.account.openid)
+													uni.setStorageSync("phone", result.data.data.account.name)
+													uni.setStorageSync("accountID", result.data.data.account.id);
+													uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl)
+													console.log("openid =====:"+ result.data.data.account.openid)
+													console.log("phone =======" + uni.getStorageSync("phone"))
+													console.log("accountId =======" + uni.getStorageSync("accountId"))
+												},
+												fail(ex) {
+													console.log(ex.message)
+												}
+											})
+										}
+									});
+					 
+								} catch (ex) {
+									console.log(ex.message)
+								}
+							}
+						});
+					}
+				}
 		},
 		
 		onLoad() {
-			var that = this
-			var openid = uni.getStorageSync("openid")
-			console.log("------页面加载中，获取openid-------")
-			if (!openid) {
-				uni.login({
-					provider: 'weixin',
-					success: function(res) {
-						try {
-							var code = res.code
-							
-							console.log("res======" + res.code)
-							uni.getUserInfo({
-								provider: 'weixin',
-								success: function(infoRes) {
-									console.log("infoRes===" + infoRes.userInfo.nickName)
-									// var  nickName = infoRes.userInfo.nickName
-									// var  avatarUrl = infoRes.userInfo.avatarUrl
-									let url = 'http://localhost:8080/hospital/user/wx?code='+code;
-									uni.request({
-										url: url, // 请求路径
-										success: result => {
-											console.log("result =======" + result.data.data)
-											console.log("result =======" + result.data.data.account.openid)
-											uni.setStorageSync("openid", result.data.data.account.openid)
-											uni.setStorageSync("phone", result.data.data.account.name)
-											uni.setStorageSync("accountID", result.data.data.account.id);
-											uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl)
-											console.log("openid =====:"+ result.data.data.account.openid)
-											console.log("phone =======" + uni.getStorageSync("phone"))
-											console.log("accountId =======" + uni.getStorageSync("userAccountId"))
-										},
-										fail(ex) {
-											console.log(ex.message)
-										}
-									})
-								}
-							});
-			 
-						} catch (ex) {
-							console.log(ex.message)
-						}
-					}
-				});
-			}
+			this.getOpenId()
 			this.autologin()
+			
 		}
 	}
 </script>

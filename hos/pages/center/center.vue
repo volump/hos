@@ -1,6 +1,6 @@
 <template>
 	<view class="body">
-		<view class="top-box">
+		<view class="top-box ">
 			<view class="row-box" v-if="isAlreadyLogin" @click="toBaseInfo()">
 				<!-- <view class="avatar-url-box"> -->
 					<!-- <open-data type="userAvatarUrl"></open-data> -->
@@ -26,8 +26,8 @@
 			</view>
 		</view>
 
-		<view class="account-acord-outbox">
-			<view class="account-acord-inbox">
+		<view class="account-acord-outbox ">
+			<view class="account-acord-inbox ">
 				<view class="left-right-half" @click="toTreatRecord()">
 					<image class="icon" src="/static/center/treat-record.png"></image>
 					<text class="text">就诊记录</text>
@@ -40,23 +40,23 @@
 		</view>
 
 		<view class="bottom-outbox">
-			<view class="option-inbox" @click="toCardList()">
+			<view class="option-inbox shadow-warp" @click="toCardList()">
 				<image class="icon" src="/static/center/card-list.png"></image>
 				<text class="text">我的家人</text>
 			</view>
-			<view class="option-inbox" @click="toAwaitingQueue()">
+			<view class="option-inbox shadow-warp" @click="toAwaitingQueue()">
 				<image class="icon" src="/static/center/paidui.png"></image>
 				<text class="text">候诊队列</text>
 			</view>
-			<view class="option-inbox" @click="toCreditDetail()">
+			<view class="option-inbox shadow-warp" @click="toCreditDetail()">
 				<image class="icon" src="/static/center/xinyong.png"></image>
 				<text class="text">信用详情</text>
 			</view>
-			<view class="option-inbox" @click="toAboutUs()">
+			<view class="option-inbox shadow-warp" @click="toAboutUs()">
 				<image class="icon" src="/static/center/about-us.png"></image>
 				<text class="text">关于我们</text>
 			</view>
-			<view class="option-inbox" @click="outLogin()" v-if="isAlreadyLogin">
+			<view class="option-inbox shadow-warp" @click="outLogin()" v-if="isAlreadyLogin">
 				<image class="icon" src="/static/center/outLogin.png"></image>
 				<text class="text">退出登录</text>
 			</view>

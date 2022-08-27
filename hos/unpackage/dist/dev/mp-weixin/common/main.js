@@ -13,8 +13,11 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 var _filters = _interopRequireDefault(__webpack_require__(/*! @/common/js/filters.js */ 11));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 for (var item in _filters.default) {
   _vue.default.filter(item, _filters.default[item]);
-}
-_vue.default.config.productionTip = false;var noDataPage = function noDataPage() {__webpack_require__.e(/*! require.ensure | component/noDataPage */ "component/noDataPage").then((function () {return resolve(__webpack_require__(/*! @/component/noDataPage.vue */ 205));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+}var cuCustom = function cuCustom() {__webpack_require__.e(/*! require.ensure | common/style/colorui/components/cu-custom */ "common/style/colorui/components/cu-custom").then((function () {return resolve(__webpack_require__(/*! ./common/style/colorui/components/cu-custom.vue */ 326));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+_vue.default.component('cu-custom', cuCustom);
+
+_vue.default.config.productionTip = false;var noDataPage = function noDataPage() {__webpack_require__.e(/*! require.ensure | component/noDataPage */ "component/noDataPage").then((function () {return resolve(__webpack_require__(/*! @/component/noDataPage.vue */ 206));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 _vue.default.component('noDataPage', noDataPage);
