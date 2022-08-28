@@ -138,7 +138,7 @@
 													uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl)
 													console.log("openid =====:"+ result.data.data.account.openid)
 													console.log("phone =======" + uni.getStorageSync("phone"))
-													console.log("accountId =======" + uni.getStorageSync("accountId"))
+													console.log("accountId =======" + uni.getStorageSync("accountID"))
 												},
 												fail(ex) {
 													console.log(ex.message)
@@ -153,18 +153,134 @@
 							}
 						});
 					}
-				}
+				},
+				
+				async dosecond(){
+					await this.doTest()
+					console.log("openid =====:"+ uni.getStorageSync('openid'))
+					console.log("------3进入判断没有用户进入注册，有着直接进入---------")
+					console.log("accountId =====:"+ uni.getStorageSync('accountID'))
+					if(uni.getStorageSync("accountID")){
+						let name = "15811111111"
+						let password  = "w123456"
+						var errorName = inputCheck('账号', 'string', name)
+						var errorPassword = inputCheck('密码', 'password', password)
+						if(errorName !== 'ok') {
+							error(errorName)
+						} else if(errorPassword !== 'ok') {
+							error(errorPassword)
+						} else {
+							uni.showLoading({
+								title: '加载中'
+							})
+							userLoginByopenid(name).then(res => {
+								if(res.data.code === 200) {
+									uni.setStorageSync('isAlreadyLogin', true);
+									console.log("loginByopenid === ==== ")
+									console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
+									setToken(res.data.data)
+									console.log("token ====="+getToken())
+								} else {
+									uni.hideLoading()
+									error('账号或密码错误')
+								}
+							}).catch(() => {
+								uni.hideLoading()
+								error('网络')
+							})
+						}
+					 	this.Countdown()
+						console.log("----------------------已经登录了")
+					}
+					else{
+						uni.showToast({
+							icon:"none",
+							title:'请先注册账号'
+						})
+						uni.navigateTo({
+							url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
+						})
+					}
+					
+				},
+				async doTest(){
+					await this.getTest();
+					return new Promise((resolve,reject)=>{
+						var that = this
+						var openid = uni.getStorageSync("openid")
+						console.log("------页面加载中，获取openid-------")
+						console.log('openid === ' + openid);
+						let url = 'http://localhost:8080/hospital/user/wx?openid='+openid;
+						uni.request({
+							url: url, // 请求路径
+							success: result => {
+								console.log("-----------2获取用户信息---------")
+								console.log("result =======" + result.data.data)
+								console.log("result =======" + result.data.data.account.openid)
+								// uni.setStorageSync("openid", result.data.data.account.openid)
+								uni.setStorageSync("phone", result.data.data.account.name)
+								uni.setStorageSync("accountID", result.data.data.account.id);
+								uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl)
+								console.log("openid =====:"+ result.data.data.account.openid)
+								console.log("phone =======" + uni.getStorageSync("phone"))
+								console.log("accountId =======" + uni.getStorageSync("accountID"))
+								resolve('success');
+							},
+							fail(ex) {
+								console.log(ex.message)
+								reject(ex.message);
+							}
+						})
+					})
+					
+				},
+				getTest(){
+					return new Promise((resolve,reject)=>{
+						uni.login({
+							provider: 'weixin',
+							success: function(res) {
+								try {
+									var code = res.code
+									console.log("getopenid00000000000======" + res.code)
+									uni.getUserInfo({
+										provider: 'weixin',
+										success: function(infoRes) {
+											let url = 'http://localhost:8080/hospital/user/wx2?code='+code;
+											uni.request({
+												url: url, // 请求路径
+												success: result => {
+													console.log("-----------1获取openid---------")
+													console.log("openid0000000000 =======" + result.data.data)
+													uni.setStorageSync("openid", result.data.data)
+													resolve('success');
+												},
+												fail(ex) {
+													console.log(ex.message)
+													reject(ex.message);
+												}
+											})
+										}
+									});
+											 
+								} catch (ex) {
+									console.log(ex.message)
+								}
+							}
+						});
+					})
 		},
 		
 		onLoad() {
 			
 			// this.getOpenId()
 			// this.autologin()
-			this.getOpenId0()
-			this.getOpenId()
-			this.autologin()
+			// this.getOpenId0()
+			// this.getOpenId()
+			// this.autologin()
+			this.dosecond()
 		}
-	}
+	},
+}
 </script>
 
 <style lang="scss" scoped>
