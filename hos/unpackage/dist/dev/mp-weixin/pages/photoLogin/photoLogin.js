@@ -161,167 +161,30 @@ var _config = __webpack_require__(/*! @/common/utils/config.js */ 28);function _
 
       }, 3000);
     },
-    autologin: function autologin() {
-      console.log("openid =====:" + uni.getStorageSync('openid'));
-      console.log("------2---------");
-      console.log("accountId =====:" + uni.getStorageSync('accountID'));
-      if (uni.getStorageSync("accountID")) {
-        var name = "15811111111";
-        var password = "w123456";
-        var errorName = (0, _inputCheck.inputCheck)('账号', 'string', name);
-        var errorPassword = (0, _inputCheck.inputCheck)('密码', 'password', password);
-        if (errorName !== 'ok') {
-          error(errorName);
-        } else if (errorPassword !== 'ok') {
-          error(errorPassword);
-        } else {
-          uni.showLoading({
-            title: '加载中' });
 
-          (0, _quickRegister.userLoginByopenid)(name).then(function (res) {
-            if (res.data.code === 200) {
-              uni.setStorageSync('isAlreadyLogin', true);
-              console.log("loginByopenid === ==== ");
-              console.log("从登录页进入+++++++res.data.data===" + res.data.data);
-              (0, _auth.setToken)(res.data.data);
-              console.log("token =====" + (0, _auth.getToken)());
-            } else {
-              uni.hideLoading();
-              error('账号或密码错误');
-            }
-          }).catch(function () {
-            uni.hideLoading();
-            error('网络');
-          });
-        }
-        this.Countdown();
-        console.log("----------------------已经登录了");
-      } else
-      {
-        uni.showToast({
-          icon: "none",
-          title: '请先注册账号' });
-
-        uni.navigateTo({
-          url: '../../pagesB/pages/center/login/quickRegister/quickRegister' });
-
-      }
-    },
-    getOpenId0: function getOpenId0() {
-      uni.login({
-        provider: 'weixin',
-        success: function success(res) {
-          try {
-            var code = res.code;
-            console.log("getopenid00000000000======" + res.code);
-            uni.getUserInfo({
-              provider: 'weixin',
-              success: function success(infoRes) {
-
-                var url = _config.requestURL + '/user/wx2?code=' + code;
-                uni.request({
-                  url: url, // 请求路径
-                  success: function success(result) {
-                    console.log("-----------1---------");
-                    console.log("openid0000000000 =======" + result.data.data);
-                    uni.setStorageSync("openid", result.data.data);
-
-                  },
-                  fail: function fail(ex) {
-                    console.log(ex.message);
-                  } });
-
-              } });
-
-
-          } catch (ex) {
-            console.log(ex.message);
-          }
-        } });
-
-    },
-    getOpenId: function getOpenId() {
-      var that = this;
-      var openid = uni.getStorageSync("openid");
-      console.log("------页面加载中，获取openid-------");
-      if (!openid) {
-        uni.login({
-          provider: 'weixin',
-          success: function success(res) {
-            try {
-              var code = res.code;
-
-              console.log("res======" + res.code);
-              uni.getUserInfo({
-                provider: 'weixin',
-                success: function success(infoRes) {
-                  console.log("infoRes===" + infoRes.userInfo.nickName);
-                  // var  nickName = infoRes.userInfo.nickName
-                  // var  avatarUrl = infoRes.userInfo.avatarUrl
-                  var url = _config.requestURL + '/user/wx?code=' + code;
-                  uni.request({
-                    url: url, // 请求路径
-                    success: function success(result) {
-                      console.log("-----------1---------");
-                      console.log("result =======" + result.data.data);
-                      console.log("result =======" + result.data.data.account.openid);
-                      uni.setStorageSync("openid", result.data.data.account.openid);
-                      uni.setStorageSync("phone", result.data.data.account.name);
-                      uni.setStorageSync("accountID", result.data.data.account.id);
-                      uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl);
-                      console.log("openid =====:" + result.data.data.account.openid);
-                      console.log("phone =======" + uni.getStorageSync("phone"));
-                      console.log("accountId =======" + uni.getStorageSync("accountID"));
-                    },
-                    fail: function fail(ex) {
-                      console.log(ex.message);
-                    } });
-
-                } });
-
-
-            } catch (ex) {
-              console.log(ex.message);
-            }
-          } });
-
-      }
-    },
-
-    dosecond: function dosecond() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var name, password, errorName, errorPassword;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  _this.doTest());case 2:
+    toPages: function toPages() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var name;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _this.getUserByOpenid());case 2:
                 console.log("openid =====:" + uni.getStorageSync('openid'));
                 console.log("------3进入判断没有用户进入注册，有着直接进入---------");
                 console.log("accountId =====:" + uni.getStorageSync('accountID'));
                 if (uni.getStorageSync("accountID")) {
-                  name = "15811111111";
-                  password = "w123456";
-                  errorName = (0, _inputCheck.inputCheck)('账号', 'string', name);
-                  errorPassword = (0, _inputCheck.inputCheck)('密码', 'password', password);
-                  if (errorName !== 'ok') {
-                    error(errorName);
-                  } else if (errorPassword !== 'ok') {
-                    error(errorPassword);
-                  } else {
-                    uni.showLoading({
-                      title: '加载中' });
+                  name = uni.getStorageSync("phone");
+                  (0, _quickRegister.userLoginByopenid)(name).then(function (res) {
+                    if (res.data.code === 200) {
+                      uni.setStorageSync('isAlreadyLogin', true);
+                      console.log("loginByopenid === ==== ");
+                      console.log("从登录页进入+++++++res.data.data===" + res.data.data);
+                      (0, _auth.setToken)(res.data.data);
+                      console.log("token =====" + (0, _auth.getToken)());
+                    } else {
 
-                    (0, _quickRegister.userLoginByopenid)(name).then(function (res) {
-                      if (res.data.code === 200) {
-                        uni.setStorageSync('isAlreadyLogin', true);
-                        console.log("loginByopenid === ==== ");
-                        console.log("从登录页进入+++++++res.data.data===" + res.data.data);
-                        (0, _auth.setToken)(res.data.data);
-                        console.log("token =====" + (0, _auth.getToken)());
-                      } else {
-                        uni.hideLoading();
-                        error('账号或密码错误');
-                      }
-                    }).catch(function () {
                       uni.hideLoading();
-                      error('网络');
-                    });
-                  }
+                      error('账号或密码错误');
+                    }
+                  }).catch(function () {
+                    uni.hideLoading();
+                    error('网络');
+                  });
                   _this.Countdown();
                   console.log("----------------------已经登录了");
                 } else
@@ -336,8 +199,8 @@ var _config = __webpack_require__(/*! @/common/utils/config.js */ 28);function _
                 }case 6:case "end":return _context.stop();}}}, _callee);}))();
 
     },
-    doTest: function doTest() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
-                  _this2.getTest());case 2:return _context2.abrupt("return",
+    getUserByOpenid: function getUserByOpenid() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.getOpenid());case 2:return _context2.abrupt("return",
                 new Promise(function (resolve, reject) {
                   var that = _this2;
                   var openid = uni.getStorageSync("openid");
@@ -368,7 +231,7 @@ var _config = __webpack_require__(/*! @/common/utils/config.js */ 28);function _
 
 
     },
-    getTest: function getTest() {
+    getOpenid: function getOpenid() {
       return new Promise(function (resolve, reject) {
         uni.login({
           provider: 'weixin',
@@ -411,7 +274,7 @@ var _config = __webpack_require__(/*! @/common/utils/config.js */ 28);function _
       // this.getOpenId0()
       // this.getOpenId()
       // this.autologin()
-      this.dosecond();
+      this.toPages();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

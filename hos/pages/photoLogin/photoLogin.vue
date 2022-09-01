@@ -29,167 +29,30 @@
 						})
 					}, 3000);
 				},
-				autologin: function() {
-					console.log("openid =====:"+ uni.getStorageSync('openid'))
-					console.log("------2---------")
-					console.log("accountId =====:"+ uni.getStorageSync('accountID'))
-					if(uni.getStorageSync("accountID")){
-						let name = "15811111111"
-						let password  = "w123456"
-						var errorName = inputCheck('账号', 'string', name)
-						var errorPassword = inputCheck('密码', 'password', password)
-						if(errorName !== 'ok') {
-							error(errorName)
-						} else if(errorPassword !== 'ok') {
-							error(errorPassword)
-						} else {
-							uni.showLoading({
-								title: '加载中'
-							})
-							userLoginByopenid(name).then(res => {
-								if(res.data.code === 200) {
-									uni.setStorageSync('isAlreadyLogin', true);
-									console.log("loginByopenid === ==== ")
-									console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
-									setToken(res.data.data)
-									console.log("token ====="+getToken())
-								} else {
-									uni.hideLoading()
-									error('账号或密码错误')
-								}
-							}).catch(() => {
-								uni.hideLoading()
-								error('网络')
-							})
-						}
-					 	this.Countdown()
-						console.log("----------------------已经登录了")
-					}
-					else{
-						uni.showToast({
-							icon:"none",
-							title:'请先注册账号'
-						})
-						uni.navigateTo({
-							url:'../../pagesB/pages/center/login/quickRegister/quickRegister'
-						})
-					}
-				},
-				getOpenId0: function(){
-					uni.login({
-						provider: 'weixin',
-						success: function(res) {
-							try {
-								var code = res.code
-								console.log("getopenid00000000000======" + res.code)
-								uni.getUserInfo({
-									provider: 'weixin',
-									success: function(infoRes) {
-								
-										let url = requestURL+'/user/wx2?code='+code;
-										uni.request({
-											url: url, // 请求路径
-											success: result => {
-												console.log("-----------1---------")
-												console.log("openid0000000000 =======" + result.data.data)
-												uni.setStorageSync("openid", result.data.data)
-									
-											},
-											fail(ex) {
-												console.log(ex.message)
-											}
-										})
-									}
-								});
-										 
-							} catch (ex) {
-								console.log(ex.message)
-							}
-						}
-					});
-				},
-				getOpenId: function(){
-					var that = this
-					var openid = uni.getStorageSync("openid")
-					console.log("------页面加载中，获取openid-------")
-					if (!openid) {
-						uni.login({
-							provider: 'weixin',
-							success: function(res) {
-								try {
-									var code = res.code
-									
-									console.log("res======" + res.code)
-									uni.getUserInfo({
-										provider: 'weixin',
-										success: function(infoRes) {
-											console.log("infoRes===" + infoRes.userInfo.nickName)
-											// var  nickName = infoRes.userInfo.nickName
-											// var  avatarUrl = infoRes.userInfo.avatarUrl
-											let url = requestURL+'/user/wx?code='+code;
-											uni.request({
-												url: url, // 请求路径
-												success: result => {
-													console.log("-----------1---------")
-													console.log("result =======" + result.data.data)
-													console.log("result =======" + result.data.data.account.openid)
-													uni.setStorageSync("openid", result.data.data.account.openid)
-													uni.setStorageSync("phone", result.data.data.account.name)
-													uni.setStorageSync("accountID", result.data.data.account.id);
-													uni.setStorageSync("avatarUrl", result.data.data.basicInfo.avatarUrl)
-													console.log("openid =====:"+ result.data.data.account.openid)
-													console.log("phone =======" + uni.getStorageSync("phone"))
-													console.log("accountId =======" + uni.getStorageSync("accountID"))
-												},
-												fail(ex) {
-													console.log(ex.message)
-												}
-											})
-										}
-									});
-					 
-								} catch (ex) {
-									console.log(ex.message)
-								}
-							}
-						});
-					}
-				},
 				
-				async dosecond(){
-					await this.doTest()
+				async toPages(){
+					await this.getUserByOpenid()
 					console.log("openid =====:"+ uni.getStorageSync('openid'))
 					console.log("------3进入判断没有用户进入注册，有着直接进入---------")
 					console.log("accountId =====:"+ uni.getStorageSync('accountID'))
 					if(uni.getStorageSync("accountID")){
-						let name = "15811111111"
-						let password  = "w123456"
-						var errorName = inputCheck('账号', 'string', name)
-						var errorPassword = inputCheck('密码', 'password', password)
-						if(errorName !== 'ok') {
-							error(errorName)
-						} else if(errorPassword !== 'ok') {
-							error(errorPassword)
-						} else {
-							uni.showLoading({
-								title: '加载中'
-							})
-							userLoginByopenid(name).then(res => {
-								if(res.data.code === 200) {
-									uni.setStorageSync('isAlreadyLogin', true);
-									console.log("loginByopenid === ==== ")
-									console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
-									setToken(res.data.data)
-									console.log("token ====="+getToken())
-								} else {
-									uni.hideLoading()
-									error('账号或密码错误')
-								}
-							}).catch(() => {
+						let name = uni.getStorageSync("phone")
+						userLoginByopenid(name).then(res => {
+							if(res.data.code === 200) {
+								uni.setStorageSync('isAlreadyLogin', true);
+								console.log("loginByopenid === ==== ")
+								console.log("从登录页进入+++++++res.data.data==="+ res.data.data)
+								setToken(res.data.data)
+								console.log("token ====="+getToken())
+							} else {
+								
 								uni.hideLoading()
-								error('网络')
-							})
-						}
+								error('账号或密码错误')
+							}
+						}).catch(() => {
+							uni.hideLoading()
+							error('网络')
+						})
 					 	this.Countdown()
 						console.log("----------------------已经登录了")
 					}
@@ -204,8 +67,8 @@
 					}
 					
 				},
-				async doTest(){
-					await this.getTest();
+				async getUserByOpenid(){
+					await this.getOpenid();
 					return new Promise((resolve,reject)=>{
 						var that = this
 						var openid = uni.getStorageSync("openid")
@@ -236,7 +99,7 @@
 					
 					
 				},
-				getTest(){
+				getOpenid(){
 					return new Promise((resolve,reject)=>{
 						uni.login({
 							provider: 'weixin',
@@ -279,7 +142,7 @@
 			// this.getOpenId0()
 			// this.getOpenId()
 			// this.autologin()
-			this.dosecond()
+			this.toPages()
 		}
 	},
 }
