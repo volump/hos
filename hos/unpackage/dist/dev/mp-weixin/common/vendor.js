@@ -10138,7 +10138,8 @@ function updatePassword(data) {
 Object.defineProperty(exports, "__esModule", { value: true });exports.requestURL = exports.baseURL = exports.appid = void 0; // 作为全局的变量被调用
 var appid = 'xxx';exports.appid = appid;
 var baseURL = 'xxxx'; // 图表地址
-exports.baseURL = baseURL;var requestURL = 'http://localhost:8080/hospital'; // ajax请求地址
+// const requestURL = 'http://localhost:8080/hostpital'
+exports.baseURL = baseURL;var requestURL = 'http://43.143.2.253:8080/hospital'; // ajax请求地址
 // const requestURL = 'http://192.168.1.11:8080/hospital' // ajax请求地址
 // const requestURL = 'http://192.168.43.96:8080/hospital' // ajax请求地址
 exports.requestURL = requestURL;

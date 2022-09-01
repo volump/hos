@@ -241,6 +241,7 @@
 					return
 				}
 			},
+			
 			// 判断两次输入发密码
 			checkPassword:function(){
 				var error = checkPassword(this.form.password, this.form.checkPassword)

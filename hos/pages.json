@@ -152,7 +152,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "医院挂号系统",
+		"navigationBarTitleText": "挂号通",
 		"navigationBarBackgroundColor": "#7EC0EE",
 		"backgroundColor": "#F2F2F2"
 	}

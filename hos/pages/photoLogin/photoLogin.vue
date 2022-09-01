@@ -12,7 +12,8 @@
 	import { userLogin } from '@/common/api/quickRegister.js';
 	import { userLoginByopenid } from '@/common/api/quickRegister.js';
 	import { inputCheck } from '@/common/js/inputCheck.js';
-	import { getOpenId } from '@/common/js/authorization.js'
+	import { getOpenId } from '@/common/js/authorization.js';
+	import { requestURL } from '@/common/utils/config.js'
 	export default {
 		
 		data() {
@@ -85,7 +86,7 @@
 									provider: 'weixin',
 									success: function(infoRes) {
 								
-										let url = 'http://localhost:8080/hospital/user/wx2?code='+code;
+										let url = requestURL+'/user/wx2?code='+code;
 										uni.request({
 											url: url, // 请求路径
 											success: result => {
@@ -125,7 +126,7 @@
 											console.log("infoRes===" + infoRes.userInfo.nickName)
 											// var  nickName = infoRes.userInfo.nickName
 											// var  avatarUrl = infoRes.userInfo.avatarUrl
-											let url = 'http://localhost:8080/hospital/user/wx?code='+code;
+											let url = requestURL+'/user/wx?code='+code;
 											uni.request({
 												url: url, // 请求路径
 												success: result => {
@@ -210,7 +211,7 @@
 						var openid = uni.getStorageSync("openid")
 						console.log("------页面加载中，获取openid-------")
 						console.log('openid === ' + openid);
-						let url = 'http://localhost:8080/hospital/user/wx?openid='+openid;
+						let url = requestURL+'/user/wx?openid='+openid;
 						uni.request({
 							url: url, // 请求路径
 							success: result => {
@@ -233,6 +234,7 @@
 						})
 					})
 					
+					
 				},
 				getTest(){
 					return new Promise((resolve,reject)=>{
@@ -245,7 +247,7 @@
 									uni.getUserInfo({
 										provider: 'weixin',
 										success: function(infoRes) {
-											let url = 'http://localhost:8080/hospital/user/wx2?code='+code;
+											let url = requestURL+'/user/wx2?code='+code;
 											uni.request({
 												url: url, // 请求路径
 												success: result => {

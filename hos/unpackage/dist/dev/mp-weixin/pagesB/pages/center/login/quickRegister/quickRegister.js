@@ -373,6 +373,7 @@ var _default = { data: function data() {return { // 表单的数据
         return;
       }
     },
+
     // 判断两次输入发密码
     checkPassword: function checkPassword() {
       var error = (0, _inputCheck2.checkPassword)(this.form.password, this.form.checkPassword);

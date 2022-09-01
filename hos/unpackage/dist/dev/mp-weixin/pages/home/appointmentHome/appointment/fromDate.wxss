@@ -126,7 +126,7 @@
 .top-date-text .icon {
   width: 30%;
   height: 100%;
-  margin: 0 auto;
+  margin: 10 auto;
   width: 80rpx;
   height: 80rpx;
   margin-right: 20%;

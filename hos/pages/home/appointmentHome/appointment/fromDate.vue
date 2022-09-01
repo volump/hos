@@ -57,7 +57,7 @@
 		.icon{
 			width: 30%;
 			height: 100%;
-			margin: 0 auto;
+			margin: 10 auto;
 			@include icon-size(80rpx,80rpx);
 			margin-right: 20%;
 		}
