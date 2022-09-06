@@ -28,16 +28,6 @@ import java.util.Optional;
  * @date 2022/8/19
  */
 
-/**
- *   appId: wx9b73d3b1f59c1e26
- *   appSecret: 34857c40917ab28dea7a6ac48fa3da95
- */
-
-/**
- * 旭博
- *   appId: wx0a3fa08145c62017
- *   appSecret: a4049095921363e699b25cb59d78c123
- */
 
 @Api(value = "权限模块", tags = "权限账号接口")
 @RestController
